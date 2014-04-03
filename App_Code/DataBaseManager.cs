@@ -127,6 +127,47 @@ public class DataBaseManager
         return properties;
     }
 
+      /// <summary>
+    /// gets the organization profile
+    /// </summary>
+    /// <param name="productId">productCounter of the product that bellongs to the organization</param>
+    /// <returns>gets the organization profile</returns>
+    public  Organization getOrganizationInfo(int productCounter)
+    {
+        List<SqlParameter> paraList = new List<SqlParameter>();
+        Organization org = new Organization();
+
+        try
+        {
+            paraList.Add(new SqlParameter("@productCounter", productCounter));
+            SqlDataReader dr = ActivateStoredProc("getOrganizationInfo", paraList);
+            while (dr.Read())
+            {// Read till the end of the data into a row
+                // read first field from the row into the list collection
+                org.Name = dr["Name"].ToString();
+                org.Description = dr["Description"].ToString();
+                org.Address = dr["Address"].ToString();
+                org.LogoSrc = dr["LogoURL"].ToString();
+                org.PhoneNumber = dr["PhoneNumber"].ToString();
+                org.WebSiteUrl = dr["Website"].ToString();
+                org.FbWebsite = dr["FbWebsite"].ToString();
+            }
+        }
+
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return org;
+    }
+    
     /////////////////////////////////////// Execution of commands && procedures  ///////////////////
 
 

@@ -61,4 +61,21 @@ public class WebService : System.Web.Services.WebService {
         string jsonString = js.Serialize(properties);
         return jsonString;
     }
+        /// <summary>
+    /// send the properties of a product from js to code behind
+    /// </summary>
+    /// <param name="productId">product id</param>
+    /// <param name="email">manager email for identification</param>
+    /// <returns>a json string of the properties</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getOrganizationInfo(int productCounter)
+    {
+        Organization org = new Organization();
+        org = org.getOrganizationInfo(productCounter);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(org);
+        return jsonString;
+    }
+    
 }

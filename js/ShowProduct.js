@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     getProductInfo(39);
+    getOrganizationInfo(39);
 });
 
 
@@ -60,4 +61,29 @@ function EnterProperties(propeties) {
         accordion.append(innerdiv);
     });
     $("#propertiesAccordion").collapsibleset("refresh");
+}
+////////////////////////////////////////////////////////////////
+
+
+//getting the selected product properties from the db
+function getOrganizationInfo(productCounter) {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/getOrganizationInfo',   // JQuery loads serverside.php
+        data: '{productCounter:"' + productCounter + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            o = $.parseJSON(data.d);
+            EnterOrganizationInformation(o);
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
+}
+
+function EnterOrganizationInformation(org) {
+    $('#orgName').text(org.Name);
 }
