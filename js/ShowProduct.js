@@ -67,7 +67,7 @@ function EnterProperties(propeties) {
     var accordion = $('#propertiesAccordion');
     $.each(propeties, function (index, Property) {
         var innerdiv = '<di  data-role="collapsible" data-collapsed="true"  >';
-        innerdiv += '<h3 >' + Property.Name + '</h3>';
+        innerdiv += '<h2 >' + Property.Name + '</h2>';
         innerdiv += '<p>' + Property.Description + '</p>';
         innerdiv += '</div>';
         accordion.append(innerdiv);

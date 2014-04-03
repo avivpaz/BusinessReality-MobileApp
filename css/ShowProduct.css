@@ -10,12 +10,17 @@
 }
 #orgName
 {
-    font-size: large;
+    font-size:larger;
 }
 #showproductBody
 {
 }
-h3 .ui-btn-inner
+h2 .ui-btn-inner
 {
-    text-align: center;
+    text-align: right;
+}
+
+#propertiesAccordion .ui-icon
+{
+/*display:none;*/ 
 }
