@@ -1,10 +1,20 @@
 ﻿var productCounter;
 $(document).ready(function () {
-    getProductInfo(40);
-    getOrganizationInfo(39);
+    productCounter = getUrlVars()["productCounter"];
+    getProductInfo(productCounter);
+    getOrganizationInfo(productCounter);
 });
 
-
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 
 //getting the selected product informaiton from the db
 function getProductInfo(productCounter) {
@@ -31,8 +41,7 @@ function enterProductInfomation(p) {
     $('#productImage').attr("src", 'http://proj.ruppin.ac.il/bgroup16/prod/' + p.ImageUrl);
     $('#price').append(p.Price);
     $('#price').append(' ש"ח');
-
-    GetProductPropertiesInfo(40);
+    GetProductPropertiesInfo(productCounter);
 }
 
 //getting the selected product properties from the db
