@@ -1,6 +1,5 @@
 ﻿var productCounter;
 $(document).ready(function () {
-Namevalue
     getProductInfo(40);
     getOrganizationInfo(39);
 });
