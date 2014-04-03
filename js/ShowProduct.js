@@ -1,5 +1,7 @@
-﻿$(document).ready(function () {
-    getProductInfo(39);
+﻿var productCounter;
+$(document).ready(function () {
+Namevalue
+    getProductInfo(40);
     getOrganizationInfo(39);
 });
 
@@ -28,8 +30,10 @@ function enterProductInfomation(p) {
     $('#productName').text(p.Name);
     $('#productDescription').text(p.Description);
     $('#productImage').attr("src", 'http://proj.ruppin.ac.il/bgroup16/prod/' + p.ImageUrl);
-    $('#basicInfo').append(p.Price);
-    GetProductPropertiesInfo(39);
+    $('#price').append(p.Price);
+    $('#price').append(' ש"ח');
+
+    GetProductPropertiesInfo(40);
 }
 
 //getting the selected product properties from the db
@@ -54,7 +58,7 @@ function GetProductPropertiesInfo(productCounter) {
 function EnterProperties(propeties) {
     var accordion = $('#propertiesAccordion');
     $.each(propeties, function (index, Property) {
-        var innerdiv = '<div  data-role="collapsible" data-collapsed="true"  >';
+        var innerdiv = '<di  data-role="collapsible" data-collapsed="true"  >';
         innerdiv += '<h3 >' + Property.Name + '</h3>';
         innerdiv += '<p>' + Property.Description + '</p>';
         innerdiv += '</div>';

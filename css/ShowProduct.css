@@ -1,20 +1,21 @@
-﻿body 
+﻿body
 {
-    text-align:center;
-    
+    text-align: center;
 }
 
 #productImage
 {
-   width:60%;
-   height:60%;   
+    width: 60%;
+    height: 60%;
+}
+#orgName
+{
+    font-size: large;
 }
 #showproductBody
 {
-    
 }
-.ui-collapsible-heading a {text-align:center;}​​​
-#header
+h3 .ui-btn-inner
 {
-  background-color:Red;   
+    text-align: center;
 }
