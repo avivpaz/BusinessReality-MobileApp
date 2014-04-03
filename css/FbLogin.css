@@ -1,0 +1,29 @@
+﻿body 
+{
+    
+    text-align: center;
+
+}
+
+
+.fb-login-button
+{
+    text-align:center;
+}
+
+.ui-page, .ui-dialog {
+    background: transparent repeat scroll;
+}
+
+.ui-content{
+    background: transparent;
+}
+
+.ui-page.ui-body-c {
+    background: url(..) !important;
+    background-position:center;
+}
+
+#center-button{
+margin: 0 auto;
+}
