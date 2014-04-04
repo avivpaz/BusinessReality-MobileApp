@@ -53,7 +53,6 @@
     ref.parentNode.insertBefore(js, ref);
 } (document));
 
-
 function getUserInfo() {
     FB.api('/me', function (response) {
         var str = "First Name: " + response.first_name + ", ";
@@ -62,7 +61,7 @@ function getUserInfo() {
         str += "Email: " + response.email + ", ";
         str += "gender: " + response.gender + ", ";
         str += "age: " + response.age_range + ", ";
-        str += "birthdat: " + response.birthday + ", ";
+        str += "birthday: " + response.birthday + ", ";
         str += "location: " + response.location.name + ", ";
         alert(str);
     });
