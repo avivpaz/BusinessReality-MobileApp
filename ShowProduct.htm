@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <meta name="viewport" content="width=device-width; height=device-height; maximum-scale=1.4; initial-scale=1.0; user-scalable=yes"/>
+    <meta name="viewport" content="width=device-width; height=device-height; maximum-scale=1.4; initial-scale=1.0; user-scalable=yes" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
     <link href="css/ShowProduct.css" rel="stylesheet" type="text/css" />
     <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
@@ -17,16 +17,66 @@
         </div>
         <div data-role="content" data-theme="c" id="showproductBody">
             <h1 id="productName">
-               </h1>
+            </h1>
             <img alt="productImage" id="productImage" />
             <h3 id="productDescription">
             </h3>
             <!-- /grid-a -->
             <div data-role="collapsible-set" data-theme="a" data-content-theme="a" id="propertiesAccordion">
             </div>
-            <h1 id="price"></h1>
+            <h1 id="price">
+            </h1>
+            <div data-role="popup" data-position-to="window" data-theme="c" data-transition="pop"
+                id="myPopup" data-history="false">
+                <div data-role="header" data-theme="a">
+                    <p>
+                        מוצר במבצע</p>
+                </div>
+                <div data-role="content">
+                    <b id="discount"></b>
+                </div>
+            </div>
         </div>
-        <div data-role="footer" data-theme="a" data-position="fixed">
+        <div data-role="footer" data-theme="c" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="">קבל הטבה</a></li>
+                    <li><a href="#comapnyProfile" data-transition="flip">אודות החברה</a></li>
+                    <li><a href="">מבצעים</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="comapnyProfile">
+        <div data-role="header" data-theme="c" data-position="fixed">
+            <p id="P1">
+                פרופיל החברה
+            </p>
+        </div>
+        <div data-role="content" data-theme="c" id="Div2">
+            <p>
+                <b id="comapnyName"></b>
+            </p>
+            <p id="orgDescription">
+            </p>
+            <table>
+                <tr>
+                    <th>
+                        טלפון:
+                    </th>
+                    <td id="orgPhone">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div data-role="footer" data-theme="c" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="">קבל הטבה</a></li>
+                    <li><a href="">אודות החברה</a></li>
+                    <li><a href="">מבצעים</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
