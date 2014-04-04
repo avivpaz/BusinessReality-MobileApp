@@ -1,12 +1,4 @@
-﻿(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-    fjs.parentNode.insertBefore(js, fjs);
-} (document, 'script', 'facebook-jssdk'));
-
-window.fbAsyncInit = function () {
+﻿window.fbAsyncInit = function () {
     FB.init({
         appId: '295197610636721',
         status: true, // check login status
@@ -24,7 +16,8 @@ window.fbAsyncInit = function () {
             // The response object is returned with a status field that lets the app know the current
             // login status of the person. In this case, we're handling the situation where they 
             // have logged in to the app.
-            testAPI();
+            window.top.location = 'http://localhost:61239/BusinessReality-MobileApp/ShowProduct.htm'
+            getUserInfo()
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call
             // FB.login() to prompt them to do so. 
@@ -45,6 +38,12 @@ window.fbAsyncInit = function () {
     });
 };
 
+////enable post on our behalf
+//FB.login(function (response) {
+//    // handle the response
+//}, { scope: 'publish_actions' });
+
+
 // Load the SDK asynchronously
 (function (d) {
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -54,11 +53,17 @@ window.fbAsyncInit = function () {
     ref.parentNode.insertBefore(js, ref);
 } (document));
 
-// Here we run a very simple test of the Graph API after login is successful. 
-// This testAPI() function is only called in those cases. 
-function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
+
+function getUserInfo() {
     FB.api('/me', function (response) {
-        console.log('Good to see you, ' + response.name + '.');
+        var str = "First Name: " + response.first_name + ", ";
+        str += "Last Name: " + response.last_name + ", ";
+        str += "Username: " + response.username + ", ";
+        str += "Email: " + response.email + ", ";
+        str += "gender: " + response.gender + ", ";
+        str += "age: " + response.age_range + ", ";
+        str += "birthdat: " + response.birthday + ", ";
+        str += "location: " + response.location.name + ", ";
+        alert(str);
     });
 }

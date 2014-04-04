@@ -1,6 +1,7 @@
 ﻿var productCounter;
 $(document).ready(function () {
-    productCounter = getUrlVars()["productCounter"];
+    //productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
 });
