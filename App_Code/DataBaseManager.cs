@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Text;
 
 /// <summary>
 /// Summary description for DataBaseManager
@@ -46,6 +47,8 @@ public class DataBaseManager
         }
 
     }
+
+    //////////////////////////////////////////onLoad procedures////////////////////////////
 
     /// <summary>
     /// get the basic info (not incude properties) of all the existing products of an organization
@@ -127,12 +130,12 @@ public class DataBaseManager
         return properties;
     }
 
-      /// <summary>
+    /// <summary>
     /// gets the organization profile
     /// </summary>
     /// <param name="productId">productCounter of the product that bellongs to the organization</param>
     /// <returns>gets the organization profile</returns>
-    public  Organization getOrganizationInfo(int productCounter)
+    public Organization getOrganizationInfo(int productCounter)
     {
         List<SqlParameter> paraList = new List<SqlParameter>();
         Organization org = new Organization();
@@ -167,7 +170,36 @@ public class DataBaseManager
         }
         return org;
     }
-    
+
+    /// <summary>
+    /// insert a new app user into the db
+    /// </summary>
+    /// <param name="user">an object of a new user</param>
+    /// <param name="email">manager email for identification</param>
+    /// <returns></returns>
+    //public int insertNewUser(User user)
+    //{
+
+    //    try
+    //    {
+    //        int rowChanged;
+    //        String command;
+    //        StringBuilder sb = new StringBuilder();
+
+    //        sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}','{4}')", user.Fname, user.Lname, user.City, user.Age, user.Gender);
+    //        String prefix = "INSERT INTO Users " + "(FirstName, LastName,City,Age,genderID)";
+    //        command = prefix + sb.ToString();
+    //        rowChanged = insertCommand(command);
+    //        return 1;
+    //    }
+    //    catch (Exception)
+    //    {
+    //        return 0;
+    //    }
+
+    //}
+
+
     /////////////////////////////////////// Execution of commands && procedures  ///////////////////
 
 
