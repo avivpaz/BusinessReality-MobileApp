@@ -1,10 +1,12 @@
 ﻿var productCounter;
 var organizetionId;
 $(document).ready(function () {
-    productCounter = getUrlVars()["productCounter"];
+    //productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
+    organizetionId = 1;
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
-    getActiveCampaignInfo(1);
+    getActiveCampaignInfo(organizetionId);
 
 
 });
@@ -48,7 +50,11 @@ function enterProductInfomation(p) {
     if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
+<<<<<<< HEAD
+        //        $("#myPopup").popup("open");
+=======
        $("#myPopup").popup("open");
+>>>>>>> 2a20fa85413f9e7198b75c0f02f46c633aa515bc
     }
     GetProductPropertiesInfo(productCounter);
 }
@@ -173,17 +179,4 @@ function EnterActiveCampaignInformation(camp) {
     $('#voucher').text(camp.Voucher);
     $('#CampDescription').text(camp.Description);
 }
-
-$(document).on("pageinit", "#showProductPage", function () {
-    $(document).on("swipeleft swiperight", "#showProductPage", function (e) {
-        // We check if there is no open panel on the page because otherwise
-        // a swipe to close the left panel would also open the right panel (and v.v.).
-        // We do this by checking the data that the framework stores on the page element (panel: open).
-        if ($.mobile.activePage.jqmData("panel") !== "open") {
-            if (e.type === "swipeleft") {
-                $("#sales").panel("open");
-            }
-        }
-    });
-});
 

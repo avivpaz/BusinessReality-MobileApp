@@ -43,18 +43,13 @@ h2 .ui-btn-inner
      text-align:right;
 }
 /* list view */
-#productsOnSale img
-{
-      width:100px;
-      height:100px;
-      right:0;
-    
-}
-    
+
     .custom-li .ui-li .ui-btn-text .ui-link-inherit .ui-li-thumb {
         position:absolute;
         top:0;
         bottom:0;
+             width:100px;
+      height:100px;
         margin:auto;
         right: 0;
         margin-right: 0 !important;
@@ -62,24 +57,6 @@ h2 .ui-btn-inner
 
     .custom-li .ui-li .ui-icon {
         left: 10px !important;    
-    }
-
-    .custom-li .ui-li .ui-btn-text .ui-link-inherit .left {
-        float: right;
-        margin-right: 50px;
-    }
-
-    .custom-li .ui-li .ui-btn-text .ui-link-inherit .left p{
-        text-align: right;
-    }
-        
-    .custom-li .ui-li .ui-btn-text .ui-link-inherit .right {
-        float: right;
-        margin-right: 20px;
-        display:block; 
-        -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
-        -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
-        -o-transform:matrix(-1, 0, 0, 1, 0, 0);        
     }
 
 
