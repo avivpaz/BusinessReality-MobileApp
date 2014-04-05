@@ -1,8 +1,13 @@
 ﻿var productCounter;
+var organizetionId;
 $(document).ready(function () {
-    productCounter = getUrlVars()["productCounter"];
+    //productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
+    organizetionId = 1;
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
+    getActiveCampaignInfo(organizetionId);
+
 
 });
 
@@ -45,7 +50,7 @@ function enterProductInfomation(p) {
     if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
-        //        $("#myPopup").popup("open");
+       $("#myPopup").popup("open");
     }
     GetProductPropertiesInfo(productCounter);
 }
@@ -104,6 +109,7 @@ function getOrganizationInfo(productCounter) {
 
 function EnterOrganizationInformation(org) {
     $('#orgName').text(org.Name);
+    $('#orgName2').text(org.Name);
     $('#comapnyName').text(org.Name);
     $('#orgDescription').text(org.Description);
     $('#orgPhone').text(org.PhoneNumber);
@@ -142,5 +148,31 @@ function EnterOnSaleProducts(p) {
     });
     $("#productsOnSale").listview("refresh");
 
+}
+
+
+//getting the current active campaign info from the db
+function getActiveCampaignInfo(organizationID) {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/getOrgActinveCampaignInfo',   // JQuery loads serverside.php
+        data: '{organizationID:"' + organizationID + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            o = $.parseJSON(data.d);
+            EnterActiveCampaignInformation(o);
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
+}
+
+//enter the details to the shareCampaign page
+function EnterActiveCampaignInformation(camp) {
+    $('#voucher').text(camp.Voucher);
+    $('#CampDescription').text(camp.Description);
 }
 

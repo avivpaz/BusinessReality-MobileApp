@@ -212,6 +212,49 @@ public class DataBaseManager
     }
 
     /// <summary>
+    /// gets the organization current active campaign info from the db
+    /// </summary>
+    /// <param name="organizationID">id for the org identification</param>
+    /// <returns>object of this campaign</returns>
+    public Campaign getOrgActinveCampaignInfo(int organizationID)
+    {
+        List<SqlParameter> paraList = new List<SqlParameter>();
+        Campaign camp = new Campaign();
+
+        try
+        {
+            paraList.Add(new SqlParameter("@organizationID", organizationID));
+            SqlDataReader dr = ActivateStoredProc("proc_GetOrgActiveCampaign", paraList);
+            while (dr.Read())
+            {// Read till the end of the data into a row
+                // read first field from the row into the list collection
+                camp.Name = dr["Name"].ToString();
+                camp.Description = dr["Description"].ToString();
+                camp.Voucher = dr["Voucher"].ToString();
+                camp.Expiration = Convert.ToInt32(dr["Expiration"]);
+                if(dr["Img"]!=""||dr["Img"]!=null)
+                    camp.ImageUrl=dr["Img"].ToString();
+                if(dr["Link"]!=""||dr["Link"]!=null)
+                    camp.LinkUrl = dr["Img"].ToString();   
+            }
+        }
+
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return camp;
+    }
+
+
+    /// <summary>
     /// insert a new app user into the db
     /// </summary>
     /// <param name="user">an object of a new user</param>
@@ -237,6 +280,8 @@ public class DataBaseManager
     //    }
 
     //}
+
+
 
 
     /////////////////////////////////////// Execution of commands && procedures  ///////////////////
