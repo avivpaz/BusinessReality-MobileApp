@@ -13,16 +13,19 @@ using System.Web.Script.Serialization;
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
 [System.Web.Script.Services.ScriptService]
-public class WebService : System.Web.Services.WebService {
+public class WebService : System.Web.Services.WebService
+{
 
-    public WebService () {
+    public WebService()
+    {
 
         //Uncomment the following line if using designed components 
         //InitializeComponent(); 
     }
 
     [WebMethod]
-    public string HelloWorld() {
+    public string HelloWorld()
+    {
         return "Hello World";
     }
 
@@ -61,7 +64,7 @@ public class WebService : System.Web.Services.WebService {
         string jsonString = js.Serialize(properties);
         return jsonString;
     }
-        /// <summary>
+    /// <summary>
     /// send the properties of a product from js to code behind
     /// </summary>
     /// <param name="productId">product id</param>
@@ -77,5 +80,22 @@ public class WebService : System.Web.Services.WebService {
         string jsonString = js.Serialize(org);
         return jsonString;
     }
-    
-}
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="organizationID"></param>
+    /// <returns></returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getOrgActinveCampaignInfo(int organizationID)
+    {
+        Campaign camp = new Campaign();
+        camp = camp.getOrgActinveCampaignInfo(organizationID);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(camp);
+        return jsonString;
+    }
+
+}//class
+

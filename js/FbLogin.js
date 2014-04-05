@@ -14,8 +14,7 @@
         // Here we specify what we do with the response anytime this event occurs. 
         //In this case, we're handling the situation where they have logged in to the app.
         if (response.status === 'connected') {
-            //window.top.location = 'http://localhost:61239/BusinessReality-MobileApp/ShowProduct.htm'
-            //invokeDialog();
+            window.top.location = 'http://localhost:61239/BusinessReality-MobileApp/ShowProduct.htm'
             //getUserInfo()
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call

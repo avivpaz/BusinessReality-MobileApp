@@ -4,6 +4,8 @@
     background-attachment:fixed;
 	background-size:cover;
     text-align: center;
+    
+    
 }
 
 
@@ -27,6 +29,7 @@
 
 div#center-button.fb-login-button
 {
-   margin-top:40%;
+   margin-top:75%;
+   padding-top:75%;
    
 }

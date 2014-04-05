@@ -1,6 +1,7 @@
 ﻿var productCounter;
 $(document).ready(function () {
-    productCounter = getUrlVars()["productCounter"];
+    //productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
 
@@ -45,7 +46,7 @@ function enterProductInfomation(p) {
     if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
-//        $("#myPopup").popup("open");
+       $("#myPopup").popup("open");
     }
     GetProductPropertiesInfo(productCounter);
 }
@@ -112,4 +113,6 @@ function EnterOrganizationInformation(org) {
     $('#orgFB').attr("href",org.FbWebsite);
 
 }
+
+
 
