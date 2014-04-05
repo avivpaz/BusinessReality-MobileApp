@@ -45,7 +45,7 @@ function enterProductInfomation(p) {
     if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
-        $("#myPopup").popup("open");
+//        $("#myPopup").popup("open");
     }
     GetProductPropertiesInfo(productCounter);
 }

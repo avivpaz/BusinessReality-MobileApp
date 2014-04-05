@@ -185,9 +185,8 @@ public class DataBaseManager
     //        int rowChanged;
     //        String command;
     //        StringBuilder sb = new StringBuilder();
-
-    //        sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}','{4}')", user.Fname, user.Lname, user.City, user.Age, user.Gender);
-    //        String prefix = "INSERT INTO Users " + "(FirstName, LastName,City,Age,genderID)";
+    //        sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}','{4}','{5}')", user.Fname, user.Lname, user.City, user.Age, user.Gender, user.FbId);
+    //        String prefix = "INSERT INTO Users " + "(FirstName, LastName,City,Age,genderID,FacebookID)";
     //        command = prefix + sb.ToString();
     //        rowChanged = insertCommand(command);
     //        return 1;

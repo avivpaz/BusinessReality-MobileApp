@@ -13,6 +13,7 @@ public class User
     private string city;
     private int age;
     private string gender;
+    private int fbId;
 
 	public User()
 	{
@@ -26,6 +27,7 @@ public class User
     public string City { get { return this.city; } set { this.city = value; } }
     public int Age { get { return this.age; } set { this.age = value; } }
     public string Gender { get { return this.gender; } set { this.gender = value; } }
+    public int FbId { get { return this.fbId; } set { this.fbId = value; } }
 
 
 

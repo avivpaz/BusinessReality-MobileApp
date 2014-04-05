@@ -16,7 +16,7 @@
             // The response object is returned with a status field that lets the app know the current
             // login status of the person. In this case, we're handling the situation where they 
             // have logged in to the app.
-            window.top.location = 'http://localhost:61239/BusinessReality-MobileApp/ShowProduct.htm'
+            //window.top.location = 'http://localhost:61239/BusinessReality-MobileApp/ShowProduct.htm'
             getUserInfo()
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -38,11 +38,27 @@
     });
 };
 
-////enable post on our behalf
-//FB.login(function (response) {
-//    // handle the response
-//}, { scope: 'publish_actions' });
+//share automaticlly on user wall
+function ShareCampaign() {
+    var params = {};
+    params['message'] = '';
+    params['name'] = '';
+    params['description'] = '';
+    params['link'] = '';
+    params['picture'] = '';
+    params['caption'] = '';
 
+    FB.api('/me/feed', 'post', params, function (response) {
+        if (!response || response.error) {
+            // an error occured
+            alert(JSON.stringify(response.error));
+        } else {
+            // Done
+            alert('Published to Facebook!');
+        }
+    });
+
+}
 
 // Load the SDK asynchronously
 (function (d) {
@@ -53,7 +69,7 @@
     ref.parentNode.insertBefore(js, ref);
 } (document));
 
-
+//get the current user basic info
 function getUserInfo() {
     FB.api('/me', function (response) {
         var str = "First Name: " + response.first_name + ", ";
@@ -62,7 +78,7 @@ function getUserInfo() {
         str += "Email: " + response.email + ", ";
         str += "gender: " + response.gender + ", ";
         str += "age: " + response.age_range + ", ";
-        str += "birthdat: " + response.birthday + ", ";
+        str += "birthday: " + response.birthday + ", ";
         str += "location: " + response.location.name + ", ";
         alert(str);
     });
