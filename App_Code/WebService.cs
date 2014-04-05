@@ -82,10 +82,10 @@ public class WebService : System.Web.Services.WebService
     }
 
     /// <summary>
-    /// 
+    /// gets the current active campaign info from the db and send it to js
     /// </summary>
-    /// <param name="organizationID"></param>
-    /// <returns></returns>
+    /// <param name="organizationID">org id for identification</param>
+    /// <returns>json string of the info</returns>
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getOrgActinveCampaignInfo(int organizationID)

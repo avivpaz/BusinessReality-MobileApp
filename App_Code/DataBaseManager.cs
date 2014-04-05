@@ -184,7 +184,7 @@ public class DataBaseManager
 
         try
         {
-            paraList.Add(new SqlParameter("@productCounter", organizationID));
+            paraList.Add(new SqlParameter("@organizationID", organizationID));
             SqlDataReader dr = ActivateStoredProc("proc_GetOrgActiveCampaign", paraList);
             while (dr.Read())
             {// Read till the end of the data into a row
