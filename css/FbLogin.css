@@ -1,8 +1,9 @@
 ﻿body 
 {
-    
+    background: url('../BackOffice/img/App_bg.jpg') no-repeat !important ;
+    background-attachment:fixed;
+	background-size:cover;
     text-align: center;
-
 }
 
 
@@ -24,6 +25,8 @@
     background-position:center;
 }
 
-#center-button{
-margin: 0 auto;
+div#center-button.fb-login-button
+{
+   margin-top:40%;
+   
 }
