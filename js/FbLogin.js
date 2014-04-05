@@ -12,12 +12,11 @@
     // will be handled. 
     FB.Event.subscribe('auth.authResponseChange', function (response) {
         // Here we specify what we do with the response anytime this event occurs. 
+        //In this case, we're handling the situation where they have logged in to the app.
         if (response.status === 'connected') {
-            // The response object is returned with a status field that lets the app know the current
-            // login status of the person. In this case, we're handling the situation where they 
-            // have logged in to the app.
             //window.top.location = 'http://localhost:61239/BusinessReality-MobileApp/ShowProduct.htm'
-            getUserInfo()
+            //invokeDialog();
+            //getUserInfo()
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call
             // FB.login() to prompt them to do so. 
@@ -38,7 +37,7 @@
     });
 };
 
-//share automaticlly on user wall
+//share automaticlly on user wall 
 function ShareCampaign() {
     var params = {};
     params['message'] = '';
@@ -60,14 +59,26 @@ function ShareCampaign() {
 
 }
 
-// Load the SDK asynchronously
-(function (d) {
-    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement('script'); js.id = id; js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
-    ref.parentNode.insertBefore(js, ref);
-} (document));
+//share with user inserting the text
+function invokeDialog() {
+    FB.ui({
+        method: 'feed',
+        name: 'name',
+        description: 'hi there!',
+        link: 'www.danvetom.com',
+        caption: 'An example caption'
+    }, function (response) { });
+}
+
+
+// Load the facebook SDK asynchronously. must have it. 
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=295197610636721";
+    fjs.parentNode.insertBefore(js, fjs);
+} (document, 'script', 'facebook-jssdk'));
 
 //get the current user basic info
 function getUserInfo() {
