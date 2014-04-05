@@ -1,7 +1,6 @@
 ﻿var productCounter;
 $(document).ready(function () {
-    //productCounter = getUrlVars()["productCounter"];
-    productCounter = 40;
+    productCounter = getUrlVars()["productCounter"];
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
 
@@ -43,7 +42,7 @@ function enterProductInfomation(p) {
     $('#productImage').attr("src", 'http://proj.ruppin.ac.il/bgroup16/prod/' + p.ImageUrl);
     $('#price').append(p.Price);
     $('#price').append(' ש"ח');
-    if (p.Discount != null || p.Discount != " ") {
+    if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
         $("#myPopup").popup("open");
@@ -108,5 +107,9 @@ function EnterOrganizationInformation(org) {
     $('#comapnyName').text(org.Name);
     $('#orgDescription').text(org.Description);
     $('#orgPhone').text(org.PhoneNumber);
+    $('#webSiteUrl').text(org.WebSiteUrl);
+    $('#orgFB').text(org.FbWebsite);
+    $('#orgFB').attr("href",org.FbWebsite);
+
 }
 
