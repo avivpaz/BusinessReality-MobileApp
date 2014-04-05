@@ -130,6 +130,46 @@ public class DataBaseManager
         return properties;
     }
 
+
+    /// <summary>
+    ///Get All Products On Sale
+    /// </summary>
+    /// <param name="productId">Name of the organization</param>
+    /// <returns>list of products </returns>
+    public List<Product> GetAllProductOnSale(string orgName)
+    {
+        List<SqlParameter> paraList = new List<SqlParameter>();
+        List<Product> products = new List<Product>();
+
+        try
+        {
+            paraList.Add(new SqlParameter("@orgName", orgName));
+            SqlDataReader dr = ActivateStoredProc("GetAllProductOnSale", paraList);
+            while (dr.Read())
+            {// Read till the end of the data into a row
+                // read first field from the row into the list collection
+                Product product = new Product();
+                product.Name = dr["Name"].ToString();
+                product.ProductCounter =  Convert.ToInt32( dr["productCounter"]);
+                product.Description = dr["ShortDescription"].ToString();
+                product.ImageUrl = dr["img"].ToString();
+                products.Add(product);
+            }
+        }
+
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return products;
+    }
     /// <summary>
     /// gets the organization profile
     /// </summary>

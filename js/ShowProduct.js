@@ -39,13 +39,13 @@ function getProductInfo(productCounter) {
 function enterProductInfomation(p) {
     $('#productName').text(p.Name);
     $('#productDescription').text(p.Description);
-    $('#productImage').attr("src", 'http://proj.ruppin.ac.il/bgroup16/prod/' + p.ImageUrl);
+    $('#productImage').attr("src", p.ImageUrl);
     $('#price').append(p.Price);
     $('#price').append(' ש"ח');
     if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
-//        $("#myPopup").popup("open");
+        //        $("#myPopup").popup("open");
     }
     GetProductPropertiesInfo(productCounter);
 }
@@ -83,7 +83,7 @@ function EnterProperties(propeties) {
 ////////////////////////////////////////////////////////////////
 
 
-//getting the selected product properties from the db
+//getting the organization info' from the db
 function getOrganizationInfo(productCounter) {
     $.ajax({ // ajax call starts
         url: 'WebService.asmx/getOrganizationInfo',   // JQuery loads serverside.php
@@ -109,7 +109,38 @@ function EnterOrganizationInformation(org) {
     $('#orgPhone').text(org.PhoneNumber);
     $('#webSiteUrl').text(org.WebSiteUrl);
     $('#orgFB').text(org.FbWebsite);
-    $('#orgFB').attr("href",org.FbWebsite);
+    $('#orgFB').attr("href", org.FbWebsite);
+    GetAllProductOnSale(org.Name);
+}
+
+///////////////////////////////////////////
+
+
+//getting the selected product properties from the db
+function GetAllProductOnSale(orgName) {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/GetAllProductOnSale',   // JQuery loads serverside.php
+        data: '{name:"' + orgName + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            p = $.parseJSON(data.d);
+            EnterOnSaleProducts(p);
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
+}
+
+function EnterOnSaleProducts(p) {
+
+    $.each(p, function (index, Product) {
+        $("#productsOnSale").append($("<li  class='custom-li'  data-icon= 'false'><a href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a><a href='' id='left-split-icon' data-theme='b'></a></li>"));
+    });
+    $("#productsOnSale").listview("refresh");
 
 }
 

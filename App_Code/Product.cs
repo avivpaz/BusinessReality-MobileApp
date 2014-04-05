@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 /// </summary>
 public class Product
 {
+    private int productCounter;
     private int id;
     string categoryName;
     private string name;
@@ -20,6 +21,7 @@ public class Product
     private DateTime dateModified;
     private Category category;
 
+    public int ProductCounter { get { return this.productCounter; } set { this.productCounter = value; } }
     public string CategoryName { get { return this.categoryName; } set { this.categoryName = value; } }
     public int Id { get { return this.id; } set { this.id = value; } }
     public string Name { get { return this.name; } set { this.name = value; } }
@@ -39,6 +41,18 @@ public class Product
     {
         DataBaseManager db = new DataBaseManager();
         return db.GetProductInfoBasic(productCounter);
+    }
+
+        /// <summary>
+    ///Get All Products On Sale
+    /// </summary>
+    /// <param name="productId">Name of the organization</param>
+    /// <returns>list of products </returns>
+    public List<Product> GetAllProductOnSale(string orgName)
+    {
+
+        DataBaseManager db = new DataBaseManager();
+        return db.GetAllProductOnSale(orgName);
     }
 
 }
