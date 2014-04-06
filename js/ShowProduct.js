@@ -1,12 +1,19 @@
 ﻿var productCounter;
 var organizetionId;
+var productsOnSale;
 $(document).ready(function () {
     productCounter = getUrlVars()["productCounter"];
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
     getActiveCampaignInfo(1);
-
-
+    $('#productsOnSale').on('click', 'li', function () {
+        var name = $(this).find('h3').text();
+        $.each(productsOnSale, function (index, Product) {
+            if (name == Product.Name) {
+                window.location.href = window.location.pathname + "?productCounter=" + Product.ProductCounter;
+            }
+        });
+    });
 });
 
 function getUrlVars() {
@@ -48,7 +55,7 @@ function enterProductInfomation(p) {
     if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
-       $("#myPopup").popup("open");
+        $("#myPopup").popup("open");
     }
     GetProductPropertiesInfo(productCounter);
 }
@@ -131,6 +138,7 @@ function GetAllProductOnSale(orgName) {
         success: function (data) // Variable data contains the data we get from serverside
         {
             p = $.parseJSON(data.d);
+            productsOnSale = p;
             EnterOnSaleProducts(p);
         }, // end of success
         error: function (e) {
@@ -142,7 +150,7 @@ function GetAllProductOnSale(orgName) {
 function EnterOnSaleProducts(p) {
 
     $.each(p, function (index, Product) {
-        $("#productsOnSale").append($("<li  class='custom-li'  data-icon= 'false'><a href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a><a href='' id='left-split-icon' data-theme='b'></a></li>"));
+        $("#productsOnSale").append($("<li  class='custom-li'  data-icon= 'false'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a><a href='' id='left-split-icon' data-theme='b'></a></li>"));
     });
     $("#productsOnSale").listview("refresh");
 
@@ -174,6 +182,7 @@ function EnterActiveCampaignInformation(camp) {
     $('#CampDescription').text(camp.Description);
 }
 
+//once the user swipe to the left, the side panel opens
 $(document).on("pageinit", "#showProductPage", function () {
     $(document).on("swipeleft swiperight", "#showProductPage", function (e) {
         // We check if there is no open panel on the page because otherwise
