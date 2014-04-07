@@ -119,8 +119,7 @@ function EnterOrganizationInformation(org) {
     $('#orgDescription').text(org.Description);
     $('#orgPhone').text(org.PhoneNumber);
     $('#webSiteUrl').text(org.WebSiteUrl);
-    $('#orgFB').text(org.FbWebsite);
-    $('#orgFB').attr("href", org.FbWebsite);
+    $('#fbLogo').attr("href", org.FbWebsite);
     GetAllProductOnSale(org.Name);
 }
 

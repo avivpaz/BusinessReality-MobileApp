@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <meta name="viewport" content="width=device-width; height=device-height; maximum-scale=1.4; initial-scale=1.0; user-scalable=yes" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <link href="css/rtl.jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css" />
     <link href="css/ShowProduct.css" rel="stylesheet" type="text/css" />
     <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
     <script src="js/ShowProduct.js" type="text/javascript"></script>
@@ -11,7 +11,8 @@
 </head>
 <body>
     <div data-role="page" id="showProductPage">
-        <div data-role="panel"  data-position-fixed="true" id="sales" data-position="right" data-display="push">
+        <div data-role="panel" data-position-fixed="true" id="sales" data-position="right"
+            data-display="push">
             <ul id="productsOnSale" data-role="listview" data-split-icon="arrow-l" data-split-theme="d">
             </ul>
         </div>
@@ -74,15 +75,12 @@
                         <td id="orgPhone">
                         </td>
                     </tr>
-                    <tr>
-                        <td id="webSiteUrl">
-                        </td>
-                    </tr>
+
                     <tr>
                         <th>
                             אתר החברה:
                         </th>
-                        <td id="orgWebsite">
+                        <td id="webSiteUrl">
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +88,8 @@
                             פייסבוק:
                         </th>
                         <td>
-                            <a id="orgFB"></a>
+                            <a id="fbLogo" target="_blank">
+                                <img src="BackOffice/img/fbLogo.jpg" /></a>
                         </td>
                     </tr>
                 </table>
@@ -112,11 +111,15 @@
             </p>
         </div>
         <div data-role="content" data-theme="c" id="Div3">
-            <h4>ההטבה הנוכחית:</h4>
+            <h4>
+                ההטבה הנוכחית:</h4>
             <p id="voucher">
             </p>
-            <h4>שתף אותנו בפייסבוק וקבל את ההטבה באופן מיידי! </h4>
-            <h4>נוסח השיתוף שיפורסם:</h4>
+            <h4>
+                שתף אותנו בפייסבוק וקבל את ההטבה באופן מיידי!
+            </h4>
+            <h4>
+                נוסח השיתוף שיפורסם:</h4>
             <p id="CampDescription">
             </p>
             <div>

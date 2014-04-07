@@ -42,8 +42,19 @@ h2 .ui-btn-inner
      margin-right:auto;  
      text-align:right;
 }
+
+#orgProfileTB img
+{
+     height:30px;
+     width:30px;
+}
 /* list view */
 
+ .custom-li .ui-li 
+ {
+    direction:rtl;
+ 
+ }
     .custom-li .ui-li .ui-btn-text .ui-link-inherit .ui-li-thumb {
         position:absolute;
         top:0;
@@ -52,13 +63,13 @@ h2 .ui-btn-inner
       height:100px;
         margin:auto;
         right: 0;
-        margin-right: 0 !important;
+        margin-right: 0 !important; 
+         
     } 
 
     .custom-li .ui-li .ui-icon {
         left: 10px !important;    
     }
-
 
     #left-split-icon {
         left: 0 !important;   
