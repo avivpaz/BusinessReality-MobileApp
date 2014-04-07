@@ -149,7 +149,7 @@ function GetAllProductOnSale(orgName) {
 function EnterOnSaleProducts(p) {
 
     $.each(p, function (index, Product) {
-        $("#productsOnSale").append($("<li  class='custom-li'  data-icon= 'false'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a><a href='' id='left-split-icon' data-theme='b'></a></li>"));
+        $("#productsOnSale").append($("<li  class='liList'  data-icon-position='left'  data-icon= 'arrow-l'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
     });
     $("#productsOnSale").listview("refresh");
 

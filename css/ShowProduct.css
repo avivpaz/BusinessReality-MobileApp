@@ -9,31 +9,33 @@
     width: 60%;
     height: 60%;
 }
-#orgName
-{
-
-}
-#showproductBody
-{
-}
 h2 .ui-btn-inner
 {
     text-align: right;
 }
 
-#propertiesAccordion .ui-icon
+.ui-listview .ui-li p,h3
 {
-/*display:none;*/ 
+     position:relative;
+     right:48%;
 }
+.ui-listview .ui-li {
+   text-align: right;
+  
+ }  
+
 .ui-btn-active  
 {
 /*    color: white !important; background: black !important; background-color: black !important; */
      }
 .ui-page { -webkit-backface-visibility: hidden; }
 
-#myPopup
+#productsOnSale img
 {
-
+  width:100%;
+  height:100%;
+    position:absolute;
+     right:0;
 }
 #orgProfileTB
 {
@@ -55,26 +57,7 @@ h2 .ui-btn-inner
     direction:rtl;
  
  }
-    .custom-li .ui-li .ui-btn-text .ui-link-inherit .ui-li-thumb {
-        position:absolute;
-        top:0;
-        bottom:0;
-             width:100px;
-      height:100px;
-        margin:auto;
-        right: 0;
-        margin-right: 0 !important; 
-         
-    } 
 
-    .custom-li .ui-li .ui-icon {
-        left: 10px !important;    
-    }
-
-    #left-split-icon {
-        left: 0 !important;   
-   
-    }
 
     .ui-li-link-alt { right: auto !important; } // Fix for jQM 1.3
 /* wrap push on wide viewports once open */
