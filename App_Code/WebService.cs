@@ -118,7 +118,7 @@ public class WebService : System.Web.Services.WebService
     ///  insert new user 
     /// </summary>
     /// <param name="organizationID">info about the user</param>
-    /// <returns>json string of the info</returns>
+    /// <returns>number of chage rows</returns>
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string insertNewUser(string id, string fname, string lname, string city, string gender, string age)
@@ -140,6 +140,21 @@ public class WebService : System.Web.Services.WebService
         int change = u.insertNewUser(u);
         JavaScriptSerializer js = new JavaScriptSerializer();
         string jsonString = js.Serialize(change);
+        return jsonString;
+    }
+
+    /// <summary>
+    /// insert into User_scan_qrCode,Activity,Activity_activated
+    /// </summary>
+    /// <returns>number of change rows</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string insertNewUserScanQr(string userid, string productCounter)
+    {
+        Product product = new Product();
+        int rows = product.insertNewUserScanQr(userid,productCounter);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(product);
         return jsonString;
     }
 

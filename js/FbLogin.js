@@ -97,10 +97,8 @@ function EnterUserInfo() {
             success: function (data) // Variable data contains the data we get from serverside
             {
                 var change = $.parseJSON(data.d);
-                alert(change);
             }, // end of success
             error: function (e) {
-                alert(e.responseText);
             } // end of error
         }) // end of ajax call
     });

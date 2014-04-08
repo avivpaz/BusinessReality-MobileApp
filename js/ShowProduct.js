@@ -1,12 +1,14 @@
 ﻿var productCounter;
 var organizetionId;
 var productsOnSale;
+var userId;
 var campaignInfo;
-
 $(document).ready(function () {
     //productCounter = getUrlVars()["productCounter"];
     productCounter = 40;
+    userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
+    ActivateActivity();
     getOrganizationInfo(productCounter);
     getActiveCampaignInfo(1);
     $('#productsOnSale').on('click', 'li', function () {
@@ -30,6 +32,23 @@ function getUrlVars() {
     return vars;
 }
 
+function ActivateActivity() {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/insertNewUserScanQr',   // JQuery loads serverside.php
+        data: '{userid:"' + userId + '",productCounter:"' + productCounter + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            p = $.parseJSON(data.d);
+            alert(p);
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
+}
 //getting the selected product informaiton from the db
 function getProductInfo(productCounter) {
     $.ajax({ // ajax call starts

@@ -282,7 +282,30 @@ public class DataBaseManager
 
 
 
+    public int insertNewUserScanQr( string userid,string productCounter)
+    {
+        SqlConnection con;
 
+        try
+        {
+
+            con = GetOpenConnection(); // create a connection to the database using the connection String defined in the web config file
+        }
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        SqlCommand command = new SqlCommand("insertNewUserScanQr", con);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.Add("@productCounter", SqlDbType.Int).Value = productCounter;
+        command.Parameters.Add("@userId", SqlDbType.Int).Value = userid;
+        int rows = command.ExecuteNonQuery();
+        con.Close();
+        return rows;
+    }
     /////////////////////////////////////// Execution of commands && procedures  ///////////////////
 
 
