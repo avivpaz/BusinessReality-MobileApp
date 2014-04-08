@@ -109,7 +109,8 @@
     </div>
     <div data-role="page" id="shareCampaign">
         <div data-role="header" data-theme="c" data-position="fixed">
-        <a href="" data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">מבצעים</a>
+            <a href="" data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">
+                מבצעים</a>
             <p id="orgName2">
             </p>
         </div>
@@ -126,11 +127,22 @@
             <p id="CampDescription">
             </p>
             <div>
-                <input id="btnShareCampaign" type="button" value="שתף לקבלת ההטבה" />
+            <input id="btnShareCampaign" type="button" value="שתף לקבלת ההטבה" onclick="ShareCampaign()" />
+            </div>
+            <div data-role="popup" data-position-to="window" data-theme="c" data-transition="pop"
+                id="popupCampaign" data-history="false">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+                    data-iconpos="notext" class="ui-btn-right"></a>
+                <div data-role="header" data-theme="a">
+                    <p>
+                       השיתוף בוצע בהצלחה!</p>
+                </div>
+                <div data-role="content">
+                    <b>גש לקופה על מנת לממש את ההטבה</b>
+                </div>
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
             </div>
         </div>
-        <div data-role="footer" data-theme="c" data-position="fixed">
-        </div>
-    </div>
 </body>
 </html>
