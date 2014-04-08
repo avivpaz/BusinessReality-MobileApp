@@ -3,9 +3,9 @@ var organizetionId;
 var productsOnSale;
 var userId;
 var campaignInfo;
-
+var activity;
 $(document).ready(function () {
-    //productCounter = getUrlVars()["productCounter"];
+    //    productCounter = getUrlVars()["productCounter"];
     productCounter = 40;
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
@@ -20,6 +20,9 @@ $(document).ready(function () {
             }
         });
     });
+//    $('#propertiesAccordion div').click(function () {
+//        alert('asas');  
+//    });
 });
 
 // Load the facebook SDK asynchronously. must have it. 
@@ -52,7 +55,7 @@ function ActivateActivity() {
         success: function (data) // Variable data contains the data we get from serverside
         {
             p = $.parseJSON(data.d);
-            alert(p);
+            activity = p.toString();
         }, // end of success
         error: function (e) {
             alert(e.responseText);
@@ -114,7 +117,7 @@ function GetProductPropertiesInfo(productCounter) {
 function EnterProperties(propeties) {
     var accordion = $('#propertiesAccordion');
     $.each(propeties, function (index, Property) {
-        var innerdiv = '<di  data-role="collapsible" data-collapsed="true"  >';
+        var innerdiv = '<div data-role="collapsible" data-collapsed="true"  >';
         innerdiv += '<h2 >' + Property.Name + '</h2>';
         innerdiv += '<p>' + Property.Description + '</p>';
         innerdiv += '</div>';
@@ -171,7 +174,7 @@ function GetAllProductOnSale(orgName) {
             p = $.parseJSON(data.d);
             productsOnSale = p;
             EnterOnSaleProducts(p);
-        }, // end of success
+        }, // end of success**
         error: function (e) {
             alert(e.responseText);
         } // end of error
@@ -253,6 +256,9 @@ function ShareCampaign() {
             $("#popupCampaign").popup("open");
         }
     });
+}
+
+function insertPropertyClick() {
 
 
 }
