@@ -3,9 +3,22 @@ var organizetionId;
 var productsOnSale;
 var userId;
 var campaignInfo;
+<<<<<<< HEAD:js/ShowProduct.js.orig.orig
+=======
 var activity;
 $(document).ready(function () {
+>>>>>>> 9724a457d1c3f54d19fa79fa756166595cea6318:js/ShowProduct.js.orig
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD:js/ShowProduct.js.orig.orig
+var activity;
+>>>>>>> 04c922beddd29cf56f88ff5a1396fc1175239daa
+$(document).ready(function () {
     //    productCounter = getUrlVars()["productCounter"];
+=======
+>>>>>>> b59def20c70a2522e1d04c43435170ac7f87fcac
+>>>>>>> 9724a457d1c3f54d19fa79fa756166595cea6318:js/ShowProduct.js.orig
     productCounter = 40;
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
@@ -215,7 +228,6 @@ function getActiveCampaignInfo(organizationID) {
 function EnterActiveCampaignInformation(camp) {
     $('#voucher').text(camp.Voucher);
     $('#CampDescription').text(camp.Description);
- 
 }
 
 //once the user swipe to the left, the side panel opens
@@ -240,25 +252,30 @@ function ShareCampaign() {
     params['name'] = campaignInfo.Name;
     params['description'] = '';
     params['caption'] = '';
-    params['link'] = campaignInfo.LinkUrl
+    if(campaignInfo.LinkUrl!="" ||campaignInfo.LinkUrl!=null)
+        params['link'] = campaignInfo.Link;
+    if (campaignInfo.ImageUrl != "" || campaignInfo.ImageUrl != null)
     params['picture'] = campaignInfo.ImageUrl;
-
     
-//    FB.api('/me/feed', 'post', params, function (response) {
-//        if (!response || response.error) {
-//            // an error occured
-//            alert(JSON.stringify(response.error));
-//        } else {
-//            // Done
-//            $("#popupCampaign").popup({ overlayTheme: "a" });
-//            $('#shareSuccess').text("אנו מודים לך על השיתוף! גש לקופה על מנת לממש את ההטבה. הטבה זאת תקפה למשך " + campaignInfo.Expiration + " שעות.");
-//            $("#popupCampaign").popup("open");
-//            $("btnShareCampaign").value("זכאי לקבל את ההטבה");
-//        }
-//    });
+
+    FB.api('/me/feed', 'post', params, function (response) {
+        if (!response || response.error) {
+            // an error occured
+            alert(JSON.stringify(response.error));
+        } else {
+            // Done
+            alert('Published to Facebook!');
+            $("#popupCampaign").popup({ overlayTheme: "a" });
+            $("#popupCampaign").popup("open");
+        }
+    });
 }
 
+<<<<<<< HEAD:js/ShowProduct.js.orig.orig
 function insertPropertyClick() {
+=======
+}
+>>>>>>> 9724a457d1c3f54d19fa79fa756166595cea6318:js/ShowProduct.js.orig
 
 
 }
