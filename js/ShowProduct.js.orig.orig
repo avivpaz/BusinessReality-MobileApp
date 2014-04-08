@@ -3,6 +3,7 @@ var organizetionId;
 var productsOnSale;
 var userId;
 var campaignInfo;
+var activity;
 <<<<<<< HEAD
 
 =======
@@ -10,6 +11,8 @@ var activity;
 >>>>>>> 04c922beddd29cf56f88ff5a1396fc1175239daa
 $(document).ready(function () {
     //    productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
+>>>>>>> b59def20c70a2522e1d04c43435170ac7f87fcac
     productCounter = 40;
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
@@ -263,6 +266,8 @@ function ShareCampaign() {
 }
 
 function insertPropertyClick() {
+
+}
 
 
 }
