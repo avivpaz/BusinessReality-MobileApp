@@ -3,6 +3,7 @@ var organizetionId;
 var productsOnSale;
 var userId;
 var campaignInfo;
+
 $(document).ready(function () {
     //productCounter = getUrlVars()["productCounter"];
     productCounter = 40;
@@ -20,6 +21,15 @@ $(document).ready(function () {
         });
     });
 });
+
+// Load the facebook SDK asynchronously. must have it. 
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=295197610636721";
+    fjs.parentNode.insertBefore(js, fjs);
+} (document, 'script', 'facebook-jssdk'));
 
 function getUrlVars() {
     var vars = [], hash;
