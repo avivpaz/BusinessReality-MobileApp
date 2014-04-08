@@ -14,8 +14,9 @@
         // Here we specify what we do with the response anytime this event occurs. 
         //In this case, we're handling the situation where they have logged in to the app.
         if (response.status === 'connected') {
-            window.top.location = 'http://localhost:61239/BusinessReality-MobileApp/ShowProduct.htm'
             //getUserInfo()
+            window.location.href = '../BusinessReality-MobileApp/ShowProduct.htm';
+            
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call
             // FB.login() to prompt them to do so. 
@@ -31,10 +32,11 @@
             // of whether they are logged into the app. If they aren't then they'll see the Login
             // dialog right after they log in to Facebook. 
             // The same caveats as above apply to the FB.login() call here.
-            FB.login();
+            //FB.login();
         }
     });
 };
+
 
 //share automaticlly on user wall 
 function ShareCampaign() {
@@ -85,6 +87,7 @@ function getUserInfo() {
         var str = "First Name: " + response.first_name + ", ";
         str += "Last Name: " + response.last_name + ", ";
         str += "Username: " + response.username + ", ";
+        str += "UserId: " + response.last_name + ", ";
         str += "Email: " + response.email + ", ";
         str += "gender: " + response.gender + ", ";
         str += "age: " + response.age_range + ", ";
