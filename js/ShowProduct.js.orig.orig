@@ -3,11 +3,24 @@ var organizetionId;
 var productsOnSale;
 var userId;
 var campaignInfo;
+<<<<<<< HEAD
 var activity;
-var properties;
 $(document).ready(function () {
+<<<<<<< HEAD
     //    productCounter = getUrlVars()["productCounter"];
+=======
+    //productCounter = getUrlVars()["productCounter"];
+>>>>>>> b59def20c70a2522e1d04c43435170ac7f87fcac
     productCounter = 40;
+=======
+$(document).ready(function () {
+<<<<<<< HEAD
+    //productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
+=======
+    productCounter = getUrlVars()["productCounter"];
+    //    productCounter = 40;
+>>>>>>> 86bb7cd65d35f34656ab4c3320545ac3c3226148
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
@@ -21,26 +34,10 @@ $(document).ready(function () {
             }
         });
     });
-    $(document).on("expand", ".collepse", function (event, ui) {
-        var desc = $(this).find('p').text();
-        $.each(properties, function (index, Property) {
-            if (desc == Property.Description) {
-                insertPropertyClick(Property.Pcid);
-            }
-        });
-    });
-
-
+//    $('#propertiesAccordion div').click(function () {
+//        alert('asas');  
+//    });
 });
-
-// Load the facebook SDK asynchronously. must have it. 
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=295197610636721";
-    fjs.parentNode.insertBefore(js, fjs);
-} (document, 'script', 'facebook-jssdk'));
 
 function getUrlVars() {
     var vars = [], hash;
@@ -122,11 +119,10 @@ function GetProductPropertiesInfo(productCounter) {
     }) // end of ajax call
 }
 
-function EnterProperties(p) {
-    properties = p;
+function EnterProperties(propeties) {
     var accordion = $('#propertiesAccordion');
-    $.each(properties, function (index, Property) {
-        var innerdiv = '<div class="collepse" data-role="collapsible" data-collapsed="true"  >';
+    $.each(propeties, function (index, Property) {
+        var innerdiv = '<div data-role="collapsible" data-collapsed="true"  >';
         innerdiv += '<h2 >' + Property.Name + '</h2>';
         innerdiv += '<p>' + Property.Description + '</p>';
         innerdiv += '</div>';
@@ -248,11 +244,11 @@ function ShareCampaign() {
     params['name'] = campaignInfo.Name;
     params['description'] = '';
     params['caption'] = '';
-    if (campaignInfo.LinkUrl != "" || campaignInfo.LinkUrl != null)
+    if(campaignInfo.LinkUrl!="" ||campaignInfo.LinkUrl!=null)
         params['link'] = campaignInfo.Link;
     if (campaignInfo.ImageUrl != "" || campaignInfo.ImageUrl != null)
-        params['picture'] = campaignInfo.ImageUrl;
-
+    params['picture'] = campaignInfo.ImageUrl;
+    
 
     FB.api('/me/feed', 'post', params, function (response) {
         if (!response || response.error) {
@@ -265,22 +261,23 @@ function ShareCampaign() {
             $("#popupCampaign").popup("open");
         }
     });
+<<<<<<< HEAD
 }
+<<<<<<< HEAD
 
-function insertPropertyClick(pcid) {
-    $.ajax({ // ajax call starts
-        url: 'WebService.asmx/propertyClicked',   // JQuery loads serverside.php
-        data: '{activity:"' + activity + '",pcid:"' + pcid + '"}',
-        type: 'POST',
-        dataType: 'json', // Choosing a JSON datatype
-        contentType: 'application/json; charset = utf-8',
-        success: function (data) // Variable data contains the data we get from serverside
-        {
-            p = $.parseJSON(data.d);
-        }, // end of success
-        error: function (e) {
-            alert(e.responseText);
-        } // end of error
-    }) // end of ajax call
+function insertPropertyClick() {
+=======
+
+>>>>>>> b59def20c70a2522e1d04c43435170ac7f87fcac
 
 }
+=======
+            alert('Published to Facebook!');
+            $("#popupCampaign").popup({ overlayTheme: "a" });
+            $("#popupCampaign").popup("open");
+        }
+    });
+
+
+}
+>>>>>>> 86bb7cd65d35f34656ab4c3320545ac3c3226148
