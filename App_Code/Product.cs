@@ -55,4 +55,9 @@ public class Product
         return db.GetAllProductOnSale(orgName);
     }
 
+    public int insertNewUserScanQr(string userid, string productCounter)
+    {
+        DataBaseManager db = new DataBaseManager();
+        return db.insertNewUserScanQr(userid, productCounter);
+    }
 }
