@@ -3,24 +3,17 @@ var organizetionId;
 var productsOnSale;
 var userId;
 var campaignInfo;
-<<<<<<< HEAD
 var activity;
-$(document).ready(function () {
 <<<<<<< HEAD
-    //    productCounter = getUrlVars()["productCounter"];
+
 =======
-    //productCounter = getUrlVars()["productCounter"];
+var activity;
+>>>>>>> 04c922beddd29cf56f88ff5a1396fc1175239daa
+$(document).ready(function () {
+    //    productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
 >>>>>>> b59def20c70a2522e1d04c43435170ac7f87fcac
     productCounter = 40;
-=======
-$(document).ready(function () {
-<<<<<<< HEAD
-    //productCounter = getUrlVars()["productCounter"];
-    productCounter = 40;
-=======
-    productCounter = getUrlVars()["productCounter"];
-    //    productCounter = 40;
->>>>>>> 86bb7cd65d35f34656ab4c3320545ac3c3226148
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
@@ -38,6 +31,15 @@ $(document).ready(function () {
 //        alert('asas');  
 //    });
 });
+
+// Load the facebook SDK asynchronously. must have it. 
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=295197610636721";
+    fjs.parentNode.insertBefore(js, fjs);
+} (document, 'script', 'facebook-jssdk'));
 
 function getUrlVars() {
     var vars = [], hash;
@@ -261,23 +263,11 @@ function ShareCampaign() {
             $("#popupCampaign").popup("open");
         }
     });
-<<<<<<< HEAD
 }
-<<<<<<< HEAD
 
 function insertPropertyClick() {
-=======
-
->>>>>>> b59def20c70a2522e1d04c43435170ac7f87fcac
 
 }
-=======
-            alert('Published to Facebook!');
-            $("#popupCampaign").popup({ overlayTheme: "a" });
-            $("#popupCampaign").popup("open");
-        }
-    });
 
 
 }
->>>>>>> 86bb7cd65d35f34656ab4c3320545ac3c3226148

@@ -224,6 +224,7 @@ function getActiveCampaignInfo(organizationID) {
 function EnterActiveCampaignInformation(camp) {
     $('#voucher').text(camp.Voucher);
     $('#CampDescription').text(camp.Description);
+ 
 }
 
 //once the user swipe to the left, the side panel opens
@@ -248,12 +249,8 @@ function ShareCampaign() {
     params['name'] = campaignInfo.Name;
     params['description'] = '';
     params['caption'] = '';
-    if (campaignInfo.LinkUrl != "" || campaignInfo.LinkUrl != null)
-        params['link'] = campaignInfo.Link;
-    if (campaignInfo.ImageUrl != "" || campaignInfo.ImageUrl != null)
+    params['link'] = campaignInfo.LinkUrl
         params['picture'] = campaignInfo.ImageUrl;
-
-
     FB.api('/me/feed', 'post', params, function (response) {
         if (!response || response.error) {
             // an error occured

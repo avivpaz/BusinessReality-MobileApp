@@ -236,7 +236,7 @@ public class DataBaseManager
                 if (dr["Img"] != "" || dr["Img"] != null)
                     camp.ImageUrl = dr["Img"].ToString();
                 if (dr["Link"] != "" || dr["Link"] != null)
-                    camp.LinkUrl = dr["Img"].ToString();
+                    camp.LinkUrl = dr["Link"].ToString();
             }
         }
 
