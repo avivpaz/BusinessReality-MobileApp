@@ -4,9 +4,8 @@ var productsOnSale;
 var campaignInfo;
 
 $(document).ready(function () {
-    productCounter = getUrlVars()["productCounter"];
-    //    productCounter = 40;
-    alert(getUrlVars()["Id"]);
+    //productCounter = getUrlVars()["productCounter"];
+    productCounter = 40;
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
     getActiveCampaignInfo(1);
@@ -171,6 +170,7 @@ function getActiveCampaignInfo(organizationID) {
         success: function (data) // Variable data contains the data we get from serverside
         {
             o = $.parseJSON(data.d);
+            campaignInfo = o;
             EnterActiveCampaignInformation(o);
         }, // end of success
         error: function (e) {
@@ -203,12 +203,15 @@ $(document).on("pageinit", "#showProductPage", function () {
 //share campaign automaticlly on user fb wall 
 function ShareCampaign() {
     var params = {};
-    params['message'] = '';
-    params['name'] = '';
+    params['message'] = campaignInfo.Description;
+    params['name'] = campaignInfo.Name;
     params['description'] = '';
-    params['link'] = '';
-    params['picture'] = '';
     params['caption'] = '';
+    if(campaignInfo.LinkUrl!="" ||campaignInfo.LinkUrl!=null)
+        params['link'] = campaignInfo.Link;
+    if (campaignInfo.ImageUrl != "" || campaignInfo.ImageUrl != null)
+    params['picture'] = campaignInfo.ImageUrl;
+    
 
     FB.api('/me/feed', 'post', params, function (response) {
         if (!response || response.error) {
@@ -217,7 +220,10 @@ function ShareCampaign() {
         } else {
             // Done
             alert('Published to Facebook!');
+            $("#popupCampaign").popup({ overlayTheme: "a" });
+            $("#popupCampaign").popup("open");
         }
     });
+
 
 }
