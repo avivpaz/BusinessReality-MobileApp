@@ -102,8 +102,7 @@
         <div data-role="footer" data-theme="c" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="">קבל הטבה</a></li>
-                    <li><a href="">אודות החברה</a></li>
+                    <li><a href="#shareCampaign">קבל הטבה</a></li>
                     <li><a href="">מבצעים</a></li>
                 </ul>
             </div>
@@ -111,8 +110,8 @@
     </div>
     <div data-role="page" id="shareCampaign">
         <div data-role="header" data-theme="c" data-position="fixed">
-            <a href="" data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">
-                מבצעים</a>
+            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">
+                חזרה</a>
             <p id="orgName2">
             </p>
         </div>
@@ -129,7 +128,7 @@
             <p id="CampDescription">
             </p>
             <div>
-            <input id="btnShareCampaign" type="button" value="שתף לקבלת ההטבה" onclick="ShareCampaign()" />
+            <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()">שתף לקבלת ההטבה</a>
             </div>
             <div data-role="popup" data-position-to="window" data-theme="c" data-transition="pop"
                 id="popupCampaign" data-history="false">
@@ -140,7 +139,7 @@
                        השיתוף בוצע בהצלחה!</p>
                 </div>
                 <div data-role="content">
-                    <b>גש לקופה על מנת לממש את ההטבה</b>
+                    <b id="shareSuccess"></b>
                 </div>
             </div>
             <div data-role="footer" data-theme="c" data-position="fixed">

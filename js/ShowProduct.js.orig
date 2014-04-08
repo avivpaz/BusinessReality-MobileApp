@@ -249,17 +249,23 @@ function ShareCampaign() {
     params['name'] = campaignInfo.Name;
     params['description'] = '';
     params['caption'] = '';
-<<<<<<< HEAD
-    if (campaignInfo.LinkUrl != "" || campaignInfo.LinkUrl != null)
-        params['link'] = campaignInfo.Link;
-    if (campaignInfo.ImageUrl != "" || campaignInfo.ImageUrl != null)
-        params['picture'] = campaignInfo.ImageUrl;
-
-
-=======
     params['link'] = campaignInfo.LinkUrl
     params['picture'] = campaignInfo.ImageUrl;
->>>>>>> a679391868eb571755c25b23cd0f574bfff4d3c7
+
+    
+    FB.api('/me/feed', 'post', params, function (response) {
+        if (!response || response.error) {
+            // an error occured
+            alert(JSON.stringify(response.error));
+        } else {
+            // Done
+            $("#popupCampaign").popup({ overlayTheme: "a" });
+            $('#shareSuccess').text("אנו מודים לך על השיתוף! גש לקופה על מנת לממש את ההטבה. הטבה זאת תקפה למשך " + campaignInfo.Expiration + " שעות.");
+            $("#popupCampaign").popup("open");
+        }
+    });
+
+        params['picture'] = campaignInfo.ImageUrl;
     FB.api('/me/feed', 'post', params, function (response) {
         if (!response || response.error) {
             // an error occured
@@ -271,6 +277,7 @@ function ShareCampaign() {
             $("#popupCampaign").popup("open");
         }
     });
+>>>>>>> bae34b352d5a4e3db8717677de2761d62bc9423b
 }
 
 function insertPropertyClick(pcid) {
