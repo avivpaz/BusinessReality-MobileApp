@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class Property
 {
+    string pcid;
     private string name;
     private string description;
 
@@ -31,6 +32,12 @@ public class Property
         set { this.description = value; }
     }
 
+    public string Pcid
+    {
+        get { return this.pcid; }
+        set { this.pcid = value; }
+    }
+
     /// <summary>
     /// call the db class to get the properties info of a specific product from the db
     /// </summary>
@@ -41,5 +48,9 @@ public class Property
         DataBaseManager db = new DataBaseManager();
         return db.GetProductPropertiesInfo(productCounter);
     }
-
+    public int propertyClicked(string activity, string pcid)
+    {
+        DataBaseManager db = new DataBaseManager();
+        return db.propertyClicked(activity,pcid);
+    }
 }

@@ -101,6 +101,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="insertNewUserScanQr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="productCounter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertNewUserScanQrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insertNewUserScanQrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="propertyClicked">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="activity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pcid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="propertyClickedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="propertyClickedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -145,6 +175,18 @@
   <wsdl:message name="insertNewUserSoapOut">
     <wsdl:part name="parameters" element="tns:insertNewUserResponse" />
   </wsdl:message>
+  <wsdl:message name="insertNewUserScanQrSoapIn">
+    <wsdl:part name="parameters" element="tns:insertNewUserScanQr" />
+  </wsdl:message>
+  <wsdl:message name="insertNewUserScanQrSoapOut">
+    <wsdl:part name="parameters" element="tns:insertNewUserScanQrResponse" />
+  </wsdl:message>
+  <wsdl:message name="propertyClickedSoapIn">
+    <wsdl:part name="parameters" element="tns:propertyClicked" />
+  </wsdl:message>
+  <wsdl:message name="propertyClickedSoapOut">
+    <wsdl:part name="parameters" element="tns:propertyClickedResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -173,6 +215,14 @@
     <wsdl:operation name="insertNewUser">
       <wsdl:input message="tns:insertNewUserSoapIn" />
       <wsdl:output message="tns:insertNewUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertNewUserScanQr">
+      <wsdl:input message="tns:insertNewUserScanQrSoapIn" />
+      <wsdl:output message="tns:insertNewUserScanQrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="propertyClicked">
+      <wsdl:input message="tns:propertyClickedSoapIn" />
+      <wsdl:output message="tns:propertyClickedSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -240,6 +290,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="insertNewUserScanQr">
+      <soap:operation soapAction="http://tempuri.org/insertNewUserScanQr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="propertyClicked">
+      <soap:operation soapAction="http://tempuri.org/propertyClicked" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -299,6 +367,24 @@
     </wsdl:operation>
     <wsdl:operation name="insertNewUser">
       <soap12:operation soapAction="http://tempuri.org/insertNewUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertNewUserScanQr">
+      <soap12:operation soapAction="http://tempuri.org/insertNewUserScanQr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="propertyClicked">
+      <soap12:operation soapAction="http://tempuri.org/propertyClicked" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

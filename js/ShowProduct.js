@@ -4,6 +4,7 @@ var productsOnSale;
 var userId;
 var campaignInfo;
 var activity;
+var properties;
 $(document).ready(function () {
     //    productCounter = getUrlVars()["productCounter"];
     productCounter = 40;
@@ -20,9 +21,16 @@ $(document).ready(function () {
             }
         });
     });
-//    $('#propertiesAccordion div').click(function () {
-//        alert('asas');  
-//    });
+    $(document).on("expand", ".collepse", function (event, ui) {
+        var desc = $(this).find('p').text();
+        $.each(properties, function (index, Property) {
+            if (desc == Property.Description) {
+                insertPropertyClick(Property.Pcid);
+            }
+        });
+    });
+
+
 });
 
 // Load the facebook SDK asynchronously. must have it. 
@@ -114,10 +122,11 @@ function GetProductPropertiesInfo(productCounter) {
     }) // end of ajax call
 }
 
-function EnterProperties(propeties) {
+function EnterProperties(p) {
+    properties = p;
     var accordion = $('#propertiesAccordion');
-    $.each(propeties, function (index, Property) {
-        var innerdiv = '<div data-role="collapsible" data-collapsed="true"  >';
+    $.each(properties, function (index, Property) {
+        var innerdiv = '<div class="collepse" data-role="collapsible" data-collapsed="true"  >';
         innerdiv += '<h2 >' + Property.Name + '</h2>';
         innerdiv += '<p>' + Property.Description + '</p>';
         innerdiv += '</div>';
@@ -241,7 +250,7 @@ function ShareCampaign() {
     params['description'] = '';
     params['caption'] = '';
     params['link'] = campaignInfo.LinkUrl
-    params['picture'] = campaignInfo.ImageUrl;
+        params['picture'] = campaignInfo.ImageUrl;
 
     
 //    FB.api('/me/feed', 'post', params, function (response) {
@@ -258,7 +267,20 @@ function ShareCampaign() {
 //    });
 }
 
-function insertPropertyClick() {
-
+function insertPropertyClick(pcid) {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/propertyClicked',   // JQuery loads serverside.php
+        data: '{activity:"' + activity + '",pcid:"' + pcid + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            p = $.parseJSON(data.d);
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
 
 }

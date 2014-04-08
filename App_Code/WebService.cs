@@ -157,6 +157,22 @@ public class WebService : System.Web.Services.WebService
         string jsonString = js.Serialize(id);
         return jsonString;
     }
+    
+    /// <summary>
+    /// insert into User_scan_qrCode,Activity,Activity_activated
+    /// </summary>
+    /// <returns>number of change rows</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+      public string propertyClicked(string activity, string pcid)
+    {
+        Property p = new Property();
+        int change = p.propertyClicked(activity, pcid);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(change.ToString());
+        return jsonString;
+    }
 
+    
 }//class
 

@@ -112,6 +112,7 @@ public class DataBaseManager
                 Property prop = new Property();
                 prop.Name = dr["Name"].ToString();
                 prop.Description = dr["description"].ToString();
+                prop.Pcid = dr["productPCID"].ToString();
                 properties.Add(prop);
             }
         }
@@ -251,6 +252,31 @@ public class DataBaseManager
             closeConnection();
         }
         return camp;
+    }
+
+    /// <summary>
+    /// insert new property Clicked
+    /// </summary>
+    /// <param name="email">insert new property Clicked</param>
+    /// <returns></returns>
+    public int propertyClicked(string activity,string pcid)
+    {
+
+        try
+        {
+            String command;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Values('{0}', '{1}', '{2}')", pcid, activity, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            String prefix = "INSERT INTO Property_clicked_in_activity " + "(productPCID, ActivityId,TimeofClick)";
+            command = prefix + sb.ToString();
+            return insertCommand(command);
+
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
+
     }
 
 
