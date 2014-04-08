@@ -51,28 +51,6 @@ function getUrlVars() {
     return vars;
 }
 
-//share automaticlly on user wall 
-function ShareCampaign() {
-    var params = {};
-    params['message'] = '';
-    params['name'] = '';
-    params['description'] = '';
-    params['link'] = '';
-    params['picture'] = '';
-    params['caption'] = '';
-
-    FB.api('/me/feed', 'post', params, function (response) {
-        if (!response || response.error) {
-            // an error occured
-            alert(JSON.stringify(response.error));
-        } else {
-            // Done
-            alert('Published to Facebook!');
-        }
-    });
-
-}
-
 
 // Load the facebook SDK asynchronously. must have it. 
 (function (d, s, id) {
@@ -103,6 +81,8 @@ function EnterUserInfo() {
         }) // end of ajax call
     });
 }
+
+//coverting the user's birthday date to an exact age
 function getAge(dateString) {
     var today = new Date();
     var birthDate = new Date(dateString);
