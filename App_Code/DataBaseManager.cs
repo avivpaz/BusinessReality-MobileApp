@@ -229,6 +229,7 @@ public class DataBaseManager
             while (dr.Read())
             {// Read till the end of the data into a row
                 // read first field from the row into the list collection
+                camp.Id = Convert.ToInt32(dr["CampaignID"]);
                 camp.Name = dr["Name"].ToString();
                 camp.Description = dr["Description"].ToString();
                 camp.Voucher = dr["Voucher"].ToString();
@@ -253,6 +254,34 @@ public class DataBaseManager
         }
         return camp;
     }
+
+
+   /// <summary>
+   /// update user_share_campaign table each time a user share campaign
+   /// </summary>
+   /// <param name="campaignID">for identification</param>
+   /// <param name="fbId">for identification</param>
+   /// <returns>number of rows changed</returns>
+    public int UpdateUserShareCampaign(int campaignID, int fbId)
+    {
+
+        try
+        {
+            String command;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Values('{0}', '{1}', '{2}','{3}')", campaignID, fbId, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),true);
+            String prefix = "INSERT INTO user_Share_Campaign " + "(CampaignID, FacebookId,ShareDate,IsEligble)";
+            command = prefix + sb.ToString();
+            return insertCommand(command);
+
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
+
+    }
+
 
     /// <summary>
     /// insert new property Clicked

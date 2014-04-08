@@ -114,6 +114,25 @@ public class WebService : System.Web.Services.WebService
         return jsonString;
     }
 
+    
+    /// <summary>
+    /// update the user_sare_campaign table each time a user share a campaign
+    /// </summary>
+    /// <param name="campaignId">campign id for identification</param>
+    /// <param name="fbID">user fb id for identification</param>
+    /// <returns>json of number of rows changed</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+      public string UpdateUserShareCampaign(int campaignId, int fbID)
+    {
+        Campaign camp = new Campaign();
+        int change = camp.UpdateUserShareCampaign(campaignId, fbID);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(change.ToString());
+        return jsonString;
+    }
+
+
     /// <summary>
     ///  insert new user 
     /// </summary>

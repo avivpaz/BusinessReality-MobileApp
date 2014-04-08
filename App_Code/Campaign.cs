@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class Campaign
 {
+    private int id;
     private string name;
     private string description;
     private string imageUrl;
@@ -24,6 +25,12 @@ public class Campaign
 		// TODO: Add constructor logic here
 		//
 	}
+
+    public int Id
+    {
+        get { return this.id; }
+        set { this.id = value; }
+    }
 
     public string Name
     {
@@ -90,5 +97,17 @@ public class Campaign
         return db.getOrgActinveCampaignInfo(organizationID);
     }
 
+    /// <summary>
+    /// update user_share_campaign table each time a user share campaign
+    /// </summary>
+    /// <param name="campaignID">for identification</param>
+    /// <param name="fbId">for identification</param>
+    /// <returns>number of rows changed</returns>
+    public int UpdateUserShareCampaign(int campaignID, int fbId)
+    {
+        DataBaseManager db = new DataBaseManager();
+        return db.UpdateUserShareCampaign(campaignID, fbId);
+    
+    }
 
 }

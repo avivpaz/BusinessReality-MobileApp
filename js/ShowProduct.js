@@ -267,9 +267,30 @@ function ShareCampaign() {
             }
         });
         //after the post the button text is changing
-        $("#btnShareCampaign .ui-btn-text").text("זכאי לקבלת ההטבה");
+        $("#btnShareCampaign .ui-btn-text").text("זכאי לקבלת ההטבה")
+        UpdateUserShareCampaign(campaignInfo.Id,userId);
     }
 }
+
+//update the user_sare_campaign table each time a user share a campaign.
+function UpdateUserShareCampaign(campaignId, fbid) {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/UpdateUserShareCampaign',   // JQuery loads serverside.php
+        data: '{campaignId:"' + campaignId + '",fbID:"' + fbid + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            p = $.parseJSON(data.d);
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
+
+}
+
 
 
 function insertPropertyClick(pcid) {
