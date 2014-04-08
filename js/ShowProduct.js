@@ -2,6 +2,7 @@
 var organizetionId;
 var productsOnSale;
 var userId;
+var campaignInfo;
 $(document).ready(function () {
     productCounter = getUrlVars()["productCounter"];
     //    productCounter = 40;
@@ -216,3 +217,25 @@ $(document).on("pageinit", "#showProductPage", function () {
     });
 });
 
+
+//share campaign automaticlly on user fb wall 
+function ShareCampaign() {
+    var params = {};
+    params['message'] = '';
+    params['name'] = '';
+    params['description'] = '';
+    params['link'] = '';
+    params['picture'] = '';
+    params['caption'] = '';
+
+    FB.api('/me/feed', 'post', params, function (response) {
+        if (!response || response.error) {
+            // an error occured
+            alert(JSON.stringify(response.error));
+        } else {
+            // Done
+            alert('Published to Facebook!');
+        }
+    });
+
+}
