@@ -92,6 +92,76 @@ public class DataBaseManager
 
 
     /// <summary>
+    /// change valid user share campaing to unvalid
+    /// </summary>
+    /// <returns>change valid user share campaing to unvalid</returns>
+    public int changeValidCampiagn(string fbId, string orgName)
+    {
+        SqlConnection con;
+
+        try
+        {
+
+            con = GetOpenConnection(); // create a connection to the database using the connection String defined in the web config file
+        }
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        SqlCommand command = new SqlCommand("changeValidCampiagn", con);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.Add("@orgName", SqlDbType.Char).Value = orgName;
+        command.Parameters.Add("@userId", SqlDbType.Int).Value = fbId;
+        int rows = command.ExecuteNonQuery();
+        con.Close();
+        return rows;
+    
+    }
+
+    /// <summary>
+    /// get the properties info of a specific product from the db
+    /// </summary>
+    /// <param name="managerEmail">manager's email for identification</param>
+    /// <param name="productId">to select a specific product from the db</param>
+    /// <returns>a list of the product info</returns>
+    public int getIfValid(string fbId, string orgName)
+    {
+        List<SqlParameter> paraList = new List<SqlParameter>();
+        List<Property> properties = new List<Property>();
+        int count = 0;
+
+        try
+        {
+            paraList.Add(new SqlParameter("@userId", fbId));
+            paraList.Add(new SqlParameter("@orgName", orgName));
+            SqlDataReader dr = ActivateStoredProc("getIfValid", paraList);
+
+            while (dr.Read())
+            {// Read till the end of the data into a row
+                // read first field from the row into the list collection
+                count = Convert.ToInt16(dr["amount"]);
+            }
+        }
+
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return count;
+    }
+
+
+    /// <summary>
     /// get the properties info of a specific product from the db
     /// </summary>
     /// <param name="managerEmail">manager's email for identification</param>
@@ -256,12 +326,12 @@ public class DataBaseManager
     }
 
 
-   /// <summary>
-   /// update user_share_campaign table each time a user share campaign
-   /// </summary>
-   /// <param name="campaignID">for identification</param>
-   /// <param name="fbId">for identification</param>
-   /// <returns>number of rows changed</returns>
+    /// <summary>
+    /// update user_share_campaign table each time a user share campaign
+    /// </summary>
+    /// <param name="campaignID">for identification</param>
+    /// <param name="fbId">for identification</param>
+    /// <returns>number of rows changed</returns>
     public int UpdateUserShareCampaign(int campaignID, int fbId)
     {
 
@@ -269,7 +339,7 @@ public class DataBaseManager
         {
             String command;
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Values('{0}', '{1}', '{2}','{3}')", campaignID, fbId, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),true);
+            sb.AppendFormat("Values('{0}', '{1}', '{2}','{3}')", campaignID, fbId, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), true);
             String prefix = "INSERT INTO user_Share_Campaign " + "(CampaignID, FacebookId,ShareDate,IsEligble)";
             command = prefix + sb.ToString();
             return insertCommand(command);
@@ -288,7 +358,7 @@ public class DataBaseManager
     /// </summary>
     /// <param name="email">insert new property Clicked</param>
     /// <returns></returns>
-    public int propertyClicked(string activity,string pcid)
+    public int propertyClicked(string activity, string pcid)
     {
 
         try

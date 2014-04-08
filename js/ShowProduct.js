@@ -1,9 +1,9 @@
-﻿var productCounter;
-var organizetionId;
+﻿var productCounter
 var productsOnSale;
-var userId;
+var userId
 var campaignInfo;
 var activity;
+var orgName;
 var properties;
 $(document).ready(function () {
     //    productCounter = getUrlVars()["productCounter"];
@@ -157,6 +157,7 @@ function getOrganizationInfo(productCounter) {
 }
 
 function EnterOrganizationInformation(org) {
+    orgName = org.Name;
     $('#orgName').text(org.Name);
     $('#orgName2').text(org.Name);
     $('#comapnyName').text(org.Name);
@@ -305,4 +306,53 @@ function insertPropertyClick(pcid) {
             alert(e.responseText);
         } // end of error
     }) // end of ajax call
+}
+
+function CheckIfValid() {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/getIfValid',   // JQuery loads serverside.php
+        data: '{fbId:"' + userId + '",orgName:"' + orgName + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            var p = $.parseJSON(data.d);
+            if (p == '0') {
+                $("#notValidVoucher").popup({ overlayTheme: "a" });
+                $('#notValidVoucherB').text("אנו מצטערים, אין לך הטבה בתוקף ");
+                $("#notValidVoucher").popup("open");
+            }
+            else {
+                $("#validPopUp").popup({ overlayTheme: "a" });
+                $("#validPopUp").popup("open");
+            }
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
+}
+
+function deactivate() {
+    var password = $("#pw").val();
+    if (password == '1234') {
+
+        $.ajax({ // ajax call starts
+            url: 'WebService.asmx/changeValidCampiagn',   // JQuery loads serverside.php
+            data: '{fbId:"' + userId + '",orgName:"' + orgName + '"}',
+            type: 'POST',
+            dataType: 'json', // Choosing a JSON datatype
+            contentType: 'application/json; charset = utf-8',
+            success: function (data) // Variable data contains the data we get from serverside
+            {
+                p = $.parseJSON(data.d);
+                alert(p);
+            }, // end of success
+            error: function (e) {
+                alert(e.responseText);
+            } // end of error
+        }) // end of ajax call
+    }
+    $("#validPopUp").popup("close");
 }

@@ -23,7 +23,7 @@
             </p>
         </div>
         <div data-role="content" data-theme="c" id="showproductBody">
-        <div id="fb-root">
+            <div id="fb-root">
             </div>
             <h1 id="productName">
             </h1>
@@ -110,8 +110,7 @@
     </div>
     <div data-role="page" id="shareCampaign">
         <div data-role="header" data-theme="c" data-position="fixed">
-            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">
-                חזרה</a>
+            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">חזרה</a>
             <p id="orgName2">
             </p>
         </div>
@@ -128,7 +127,8 @@
             <p id="CampDescription">
             </p>
             <div>
-            <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()">שתף לקבלת ההטבה</a>
+                <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()">שתף לקבלת ההטבה</a>
+                <a data-role="button" id="btnCheckIfValid" onclick="CheckIfValid()">לבדיקת זכאות ההטבה</a>
             </div>
             <div data-role="popup" data-position-to="window" data-theme="c" data-transition="pop"
                 id="popupCampaign" data-history="false">
@@ -136,11 +136,37 @@
                     data-iconpos="notext" class="ui-btn-right"></a>
                 <div data-role="header" data-theme="a">
                     <p>
-                       השיתוף בוצע בהצלחה!</p>
+                        השיתוף בוצע בהצלחה!</p>
                 </div>
                 <div data-role="content">
                     <b id="shareSuccess"></b>
                 </div>
+            </div>
+            <div data-role="popup" data-position-to="window" data-theme="c" data-transition="pop"
+                id="notValidVoucher" data-history="false">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+                    data-iconpos="notext" class="ui-btn-right"></a>
+                <div data-role="header" data-theme="a">
+                    <p>
+                    </p>
+                </div>
+                <div data-role="content">
+                    <b id="notValidVoucherB"></b>
+                </div>
+            </div>
+            <div data-role="popup" id="validPopUp" data-position-to="window" data-theme="a" class="ui-corner-all">
+                <div data-role="header" data-theme="a">
+                    <p>
+                        נא הכנס סיסמה</p>
+                </div>
+                <form action="">
+                <div style="padding: 10px 20px;">
+                    <label id="passLbl" for="pw" class="ui-hidden-accessible">
+                        סיסמא:</label>
+                    <input type="password" name="pass" id="pw" value="" placeholder="סיסמא" data-theme="a" />
+                    <input type="button" value="אישור" onclick="deactivate()" />
+                </div>
+                </form>
             </div>
             <div data-role="footer" data-theme="c" data-position="fixed">
             </div>

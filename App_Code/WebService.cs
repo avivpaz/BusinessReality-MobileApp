@@ -191,6 +191,34 @@ public class WebService : System.Web.Services.WebService
         return jsonString;
     }
 
-    
+    /// <summary>
+    /// checks if the user has a valid voucher
+    /// </summary>
+    /// <returns>number of rows</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getIfValid(string fbId, string orgName)
+    {
+        Campaign cm = new Campaign();
+        int change = cm.getIfValid(fbId, orgName);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(change.ToString());
+        return jsonString;
+    }
+      /// <summary>
+    /// checks if the user has a valid voucher
+    /// </summary>
+    /// <returns>number of rows</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string changeValidCampiagn(string fbId, string orgName)
+    {
+        Campaign cm = new Campaign();
+        int change = cm.changeValidCampiagn(fbId, orgName);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(change.ToString());
+        return jsonString;
+    }
+       
 }//class
 

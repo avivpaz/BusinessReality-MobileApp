@@ -110,4 +110,14 @@ public class Campaign
     
     }
 
+    public int getIfValid(string fbId, string orgName)
+    {
+        DataBaseManager db = new DataBaseManager();
+        return db.getIfValid(fbId, orgName);
+    }
+    public int changeValidCampiagn(string fbId, string orgName)
+    {
+        DataBaseManager db = new DataBaseManager();
+        return db.changeValidCampiagn(fbId, orgName);
+    }
 }
