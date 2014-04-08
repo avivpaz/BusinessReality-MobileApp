@@ -82,7 +82,7 @@ public class WebService : System.Web.Services.WebService
         return jsonString;
     }
 
-        /// <summary>
+    /// <summary>
     /// gets the organization info
     /// </summary>
     /// <param name="email">Product Counter</param>
@@ -111,6 +111,35 @@ public class WebService : System.Web.Services.WebService
         camp = camp.getOrgActinveCampaignInfo(organizationID);
         JavaScriptSerializer js = new JavaScriptSerializer();
         string jsonString = js.Serialize(camp);
+        return jsonString;
+    }
+
+    /// <summary>
+    ///  insert new user 
+    /// </summary>
+    /// <param name="organizationID">info about the user</param>
+    /// <returns>json string of the info</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string insertNewUser(string id, string fname, string lname, string city, string gender, string age)
+    {
+        User u = new User();
+        u.FbId = id;
+        u.Fname = fname;
+        u.Lname = lname;
+        u.Age = Convert.ToInt16(age);
+        u.City = city;
+        if (gender == "male")
+        {
+            u.Gender = "1";
+        }
+        else
+        {
+            u.Gender = "2";
+        }
+        int change = u.insertNewUser(u);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(change);
         return jsonString;
     }
 

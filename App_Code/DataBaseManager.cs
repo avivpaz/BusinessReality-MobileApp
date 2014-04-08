@@ -150,7 +150,7 @@ public class DataBaseManager
                 // read first field from the row into the list collection
                 Product product = new Product();
                 product.Name = dr["Name"].ToString();
-                product.ProductCounter =  Convert.ToInt32( dr["productCounter"]);
+                product.ProductCounter = Convert.ToInt32(dr["productCounter"]);
                 product.Description = dr["ShortDescription"].ToString();
                 product.ImageUrl = dr["img"].ToString();
                 products.Add(product);
@@ -232,10 +232,10 @@ public class DataBaseManager
                 camp.Description = dr["Description"].ToString();
                 camp.Voucher = dr["Voucher"].ToString();
                 camp.Expiration = Convert.ToInt32(dr["Expiration"]);
-                if(dr["Img"]!=""||dr["Img"]!=null)
-                    camp.ImageUrl=dr["Img"].ToString();
-                if(dr["Link"]!=""||dr["Link"]!=null)
-                    camp.LinkUrl = dr["Img"].ToString();   
+                if (dr["Img"] != "" || dr["Img"] != null)
+                    camp.ImageUrl = dr["Img"].ToString();
+                if (dr["Link"] != "" || dr["Link"] != null)
+                    camp.LinkUrl = dr["Img"].ToString();
             }
         }
 
@@ -260,26 +260,25 @@ public class DataBaseManager
     /// <param name="user">an object of a new user</param>
     /// <param name="email">manager email for identification</param>
     /// <returns></returns>
-    //public int insertNewUser(User user)
-    //{
+    public int insertNewUser(User user)
+    {
 
-    //    try
-    //    {
-    //        int rowChanged;
-    //        String command;
-    //        StringBuilder sb = new StringBuilder();
-    //        sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}','{4}','{5}')", user.Fname, user.Lname, user.City, user.Age, user.Gender, user.FbId);
-    //        String prefix = "INSERT INTO Users " + "(FirstName, LastName,City,Age,genderID,FacebookID)";
-    //        command = prefix + sb.ToString();
-    //        rowChanged = insertCommand(command);
-    //        return 1;
-    //    }
-    //    catch (Exception)
-    //    {
-    //        return 0;
-    //    }
+        try
+        {
+            String command;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}','{4}','{5}')", user.Fname, user.Lname, user.City, user.Age.ToString(), user.Gender, user.FbId);
+            String prefix = "INSERT INTO Users " + "(FirstName, LastName,City,Age,genderID,FacebookID)";
+            command = prefix + sb.ToString();
+             return insertCommand(command);
+          
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
 
-    //}
+    }
 
 
 

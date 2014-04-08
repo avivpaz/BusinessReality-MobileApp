@@ -14,9 +14,11 @@
         // Here we specify what we do with the response anytime this event occurs. 
         //In this case, we're handling the situation where they have logged in to the app.
         if (response.status === 'connected') {
-            getUserInfo()
-            //window.location.href = '../BusinessReality-MobileApp/ShowProduct.htm';
-            
+            EnterUserInfo()
+            var productCounter = getUrlVars()["productCounter"];
+            FB.api('/me', function (response) {
+                window.location.href = '../BusinessReality-MobileApp/ShowProduct.htm?productCounter=' + productCounter + '&Id=' + response.id;
+            });
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call
             // FB.login() to prompt them to do so. 
@@ -37,6 +39,17 @@
     });
 };
 
+
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 
 //share automaticlly on user wall 
 function ShareCampaign() {
@@ -60,17 +73,6 @@ function ShareCampaign() {
 
 }
 
-//share with user inserting the text
-function invokeDialog() {
-    FB.ui({
-        method: 'feed',
-        name: 'name',
-        description: 'hi there!',
-        link: 'www.danvetom.com',
-        caption: 'An example caption'
-    }, function (response) { });
-}
-
 
 // Load the facebook SDK asynchronously. must have it. 
 (function (d, s, id) {
@@ -82,16 +84,34 @@ function invokeDialog() {
 } (document, 'script', 'facebook-jssdk'));
 
 //get the current user basic info
-function getUserInfo() {
+function EnterUserInfo() {
     FB.api('/me', function (response) {
-        var str = "First Name: " + response.first_name + ", ";
-        str += "Last Name: " + response.last_name + ", ";
-        str += "Username: " + response.username + ", ";
-        str += "Id: " + response.id + ", ";
-        str += "Email: " + response.email + ", ";
-        str += "gender: " + response.gender + ", ";
-        str += "birthday: " + response.birthday + ", ";
-        str += "location: " + response.location.name + ", ";
-       // alert(str);
+        var city = response.location.name.split(",")[0];
+        var age = getAge(response.birthday);
+        $.ajax({ // ajax call starts
+            url: 'WebService.asmx/insertNewUser',   // JQuery loads serverside.php
+            data: '{id:"' + response.id + '",fname:"' + response.first_name + '",lname:"' + response.last_name + '",city:"' + city + '",gender:"' + response.gender + '",age:"' + age + '"}',
+            type: 'POST',
+            dataType: 'json', // Choosing a JSON datatype
+            contentType: 'application/json; charset = utf-8',
+            success: function (data) // Variable data contains the data we get from serverside
+            {
+                var change = $.parseJSON(data.d);
+                alert(change);
+            }, // end of success
+            error: function (e) {
+                alert(e.responseText);
+            } // end of error
+        }) // end of ajax call
     });
+}
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
 }

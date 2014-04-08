@@ -3,8 +3,9 @@ var organizetionId;
 var productsOnSale;
 
 $(document).ready(function () {
-    //productCounter = getUrlVars()["productCounter"];
-    productCounter = 40;
+    productCounter = getUrlVars()["productCounter"];
+    //    productCounter = 40;
+    alert(getUrlVars()["Id"]);
     getProductInfo(productCounter);
     getOrganizationInfo(productCounter);
     getActiveCampaignInfo(1);

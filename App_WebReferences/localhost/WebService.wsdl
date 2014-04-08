@@ -40,6 +40,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAllProductOnSale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllProductOnSaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllProductOnSaleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="getOrganizationInfo">
         <s:complexType>
           <s:sequence>
@@ -51,6 +65,39 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="getOrganizationInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOrgActinveCampaignInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="organizationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOrgActinveCampaignInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getOrgActinveCampaignInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertNewUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="gender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="age" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertNewUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insertNewUserResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -74,11 +121,29 @@
   <wsdl:message name="GetProductPropertiesInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetProductPropertiesInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllProductOnSaleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllProductOnSale" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProductOnSaleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllProductOnSaleResponse" />
+  </wsdl:message>
   <wsdl:message name="getOrganizationInfoSoapIn">
     <wsdl:part name="parameters" element="tns:getOrganizationInfo" />
   </wsdl:message>
   <wsdl:message name="getOrganizationInfoSoapOut">
     <wsdl:part name="parameters" element="tns:getOrganizationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getOrgActinveCampaignInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:getOrgActinveCampaignInfo" />
+  </wsdl:message>
+  <wsdl:message name="getOrgActinveCampaignInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:getOrgActinveCampaignInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertNewUserSoapIn">
+    <wsdl:part name="parameters" element="tns:insertNewUser" />
+  </wsdl:message>
+  <wsdl:message name="insertNewUserSoapOut">
+    <wsdl:part name="parameters" element="tns:insertNewUserResponse" />
   </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="HelloWorld">
@@ -93,9 +158,21 @@
       <wsdl:input message="tns:GetProductPropertiesInfoSoapIn" />
       <wsdl:output message="tns:GetProductPropertiesInfoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllProductOnSale">
+      <wsdl:input message="tns:GetAllProductOnSaleSoapIn" />
+      <wsdl:output message="tns:GetAllProductOnSaleSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="getOrganizationInfo">
       <wsdl:input message="tns:getOrganizationInfoSoapIn" />
       <wsdl:output message="tns:getOrganizationInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getOrgActinveCampaignInfo">
+      <wsdl:input message="tns:getOrgActinveCampaignInfoSoapIn" />
+      <wsdl:output message="tns:getOrgActinveCampaignInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertNewUser">
+      <wsdl:input message="tns:insertNewUserSoapIn" />
+      <wsdl:output message="tns:insertNewUserSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -127,8 +204,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllProductOnSale">
+      <soap:operation soapAction="http://tempuri.org/GetAllProductOnSale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getOrganizationInfo">
       <soap:operation soapAction="http://tempuri.org/getOrganizationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrgActinveCampaignInfo">
+      <soap:operation soapAction="http://tempuri.org/getOrgActinveCampaignInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertNewUser">
+      <soap:operation soapAction="http://tempuri.org/insertNewUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -166,8 +270,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllProductOnSale">
+      <soap12:operation soapAction="http://tempuri.org/GetAllProductOnSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getOrganizationInfo">
       <soap12:operation soapAction="http://tempuri.org/getOrganizationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrgActinveCampaignInfo">
+      <soap12:operation soapAction="http://tempuri.org/getOrgActinveCampaignInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertNewUser">
+      <soap12:operation soapAction="http://tempuri.org/insertNewUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
