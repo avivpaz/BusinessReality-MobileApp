@@ -82,6 +82,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UpdateUserShareCampaign">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="campaignId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fbID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserShareCampaignResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUserShareCampaignResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="insertNewUser">
         <s:complexType>
           <s:sequence>
@@ -169,6 +184,12 @@
   <wsdl:message name="getOrgActinveCampaignInfoSoapOut">
     <wsdl:part name="parameters" element="tns:getOrgActinveCampaignInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="UpdateUserShareCampaignSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserShareCampaign" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserShareCampaignSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserShareCampaignResponse" />
+  </wsdl:message>
   <wsdl:message name="insertNewUserSoapIn">
     <wsdl:part name="parameters" element="tns:insertNewUser" />
   </wsdl:message>
@@ -211,6 +232,10 @@
     <wsdl:operation name="getOrgActinveCampaignInfo">
       <wsdl:input message="tns:getOrgActinveCampaignInfoSoapIn" />
       <wsdl:output message="tns:getOrgActinveCampaignInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserShareCampaign">
+      <wsdl:input message="tns:UpdateUserShareCampaignSoapIn" />
+      <wsdl:output message="tns:UpdateUserShareCampaignSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="insertNewUser">
       <wsdl:input message="tns:insertNewUserSoapIn" />
@@ -274,6 +299,15 @@
     </wsdl:operation>
     <wsdl:operation name="getOrgActinveCampaignInfo">
       <soap:operation soapAction="http://tempuri.org/getOrgActinveCampaignInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserShareCampaign">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserShareCampaign" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -358,6 +392,15 @@
     </wsdl:operation>
     <wsdl:operation name="getOrgActinveCampaignInfo">
       <soap12:operation soapAction="http://tempuri.org/getOrgActinveCampaignInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserShareCampaign">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUserShareCampaign" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

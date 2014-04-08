@@ -4,15 +4,9 @@ var productsOnSale;
 var userId;
 var campaignInfo;
 var activity;
-<<<<<<< HEAD
-
-=======
-var activity;
->>>>>>> 04c922beddd29cf56f88ff5a1396fc1175239daa
+var properties;
 $(document).ready(function () {
     //    productCounter = getUrlVars()["productCounter"];
-    productCounter = 40;
->>>>>>> b59def20c70a2522e1d04c43435170ac7f87fcac
     productCounter = 40;
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
@@ -27,9 +21,16 @@ $(document).ready(function () {
             }
         });
     });
-//    $('#propertiesAccordion div').click(function () {
-//        alert('asas');  
-//    });
+    $(document).on("expand", ".collepse", function (event, ui) {
+        var desc = $(this).find('p').text();
+        $.each(properties, function (index, Property) {
+            if (desc == Property.Description) {
+                insertPropertyClick(Property.Pcid);
+            }
+        });
+    });
+
+
 });
 
 // Load the facebook SDK asynchronously. must have it. 
@@ -121,10 +122,11 @@ function GetProductPropertiesInfo(productCounter) {
     }) // end of ajax call
 }
 
-function EnterProperties(propeties) {
+function EnterProperties(p) {
+    properties = p;
     var accordion = $('#propertiesAccordion');
-    $.each(propeties, function (index, Property) {
-        var innerdiv = '<div data-role="collapsible" data-collapsed="true"  >';
+    $.each(properties, function (index, Property) {
+        var innerdiv = '<div class="collepse" data-role="collapsible" data-collapsed="true"  >';
         innerdiv += '<h2 >' + Property.Name + '</h2>';
         innerdiv += '<p>' + Property.Description + '</p>';
         innerdiv += '</div>';
@@ -222,6 +224,7 @@ function getActiveCampaignInfo(organizationID) {
 function EnterActiveCampaignInformation(camp) {
     $('#voucher').text(camp.Voucher);
     $('#CampDescription').text(camp.Description);
+ 
 }
 
 //once the user swipe to the left, the side panel opens
@@ -246,12 +249,37 @@ function ShareCampaign() {
     params['name'] = campaignInfo.Name;
     params['description'] = '';
     params['caption'] = '';
-    if(campaignInfo.LinkUrl!="" ||campaignInfo.LinkUrl!=null)
+<<<<<<< HEAD
+<<<<<<< HEAD
+    if (campaignInfo.LinkUrl != "" || campaignInfo.LinkUrl != null)
         params['link'] = campaignInfo.Link;
     if (campaignInfo.ImageUrl != "" || campaignInfo.ImageUrl != null)
-    params['picture'] = campaignInfo.ImageUrl;
-    
+        params['picture'] = campaignInfo.ImageUrl;
 
+
+=======
+    params['link'] = campaignInfo.LinkUrl
+    params['picture'] = campaignInfo.ImageUrl;
+>>>>>>> a679391868eb571755c25b23cd0f574bfff4d3c7
+=======
+    params['link'] = campaignInfo.LinkUrl
+    params['picture'] = campaignInfo.ImageUrl;
+
+    
+    FB.api('/me/feed', 'post', params, function (response) {
+        if (!response || response.error) {
+            // an error occured
+            alert(JSON.stringify(response.error));
+        } else {
+            // Done
+            $("#popupCampaign").popup({ overlayTheme: "a" });
+            $('#shareSuccess').text("אנו מודים לך על השיתוף! גש לקופה על מנת לממש את ההטבה. הטבה זאת תקפה למשך " + campaignInfo.Expiration + " שעות.");
+            $("#popupCampaign").popup("open");
+        }
+    });
+
+        params['picture'] = campaignInfo.ImageUrl;
+>>>>>>> ba29b6923448c6d8151b174c3f08cb0432333acc
     FB.api('/me/feed', 'post', params, function (response) {
         if (!response || response.error) {
             // an error occured
@@ -263,11 +291,26 @@ function ShareCampaign() {
             $("#popupCampaign").popup("open");
         }
     });
+<<<<<<< HEAD
+=======
+>>>>>>> bae34b352d5a4e3db8717677de2761d62bc9423b
+>>>>>>> ba29b6923448c6d8151b174c3f08cb0432333acc
 }
 
-function insertPropertyClick() {
-
-}
-
+function insertPropertyClick(pcid) {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/propertyClicked',   // JQuery loads serverside.php
+        data: '{activity:"' + activity + '",pcid:"' + pcid + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            p = $.parseJSON(data.d);
+        }, // end of success
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
 
 }
