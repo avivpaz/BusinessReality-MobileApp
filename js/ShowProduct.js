@@ -1,6 +1,7 @@
 ﻿var productCounter;
 var organizetionId;
 var productsOnSale;
+
 $(document).ready(function () {
     //productCounter = getUrlVars()["productCounter"];
     productCounter = 40;

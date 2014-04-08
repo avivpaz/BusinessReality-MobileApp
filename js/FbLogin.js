@@ -14,8 +14,8 @@
         // Here we specify what we do with the response anytime this event occurs. 
         //In this case, we're handling the situation where they have logged in to the app.
         if (response.status === 'connected') {
-            //getUserInfo()
-            window.location.href = '../BusinessReality-MobileApp/ShowProduct.htm';
+            getUserInfo()
+            //window.location.href = '../BusinessReality-MobileApp/ShowProduct.htm';
             
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -87,7 +87,7 @@ function getUserInfo() {
         var str = "First Name: " + response.first_name + ", ";
         str += "Last Name: " + response.last_name + ", ";
         str += "Username: " + response.username + ", ";
-        str += "UserId: " + response.last_name + ", ";
+        str += "Id: " + response.id + ", ";
         str += "Email: " + response.email + ", ";
         str += "gender: " + response.gender + ", ";
         str += "age: " + response.age_range + ", ";
