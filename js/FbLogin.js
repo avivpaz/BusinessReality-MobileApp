@@ -17,7 +17,7 @@
             EnterUserInfo()
             var productCounter = getUrlVars()["productCounter"];
             FB.api('/me', function (response) {
-                window.location.href = '../BusinessReality-MobileApp/ShowProduct.htm?productCounter=' + productCounter + '&Id=' + response.id;
+                window.location.href = 'ShowProduct.htm?productCounter=' + productCounter + '&Id=' + response.id;
             });
         } else if (response.status === 'not_authorized') {
             // In this case, the person is logged into Facebook, but not into the app, so we call

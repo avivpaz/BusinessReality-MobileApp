@@ -152,9 +152,9 @@ public class WebService : System.Web.Services.WebService
     public string insertNewUserScanQr(string userid, string productCounter)
     {
         Product product = new Product();
-        int rows = product.insertNewUserScanQr(userid,productCounter);
+        int id = product.insertNewUserScanQr(userid, productCounter);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(product);
+        string jsonString = js.Serialize(id);
         return jsonString;
     }
 

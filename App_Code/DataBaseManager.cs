@@ -270,8 +270,8 @@ public class DataBaseManager
             sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}','{4}','{5}')", user.Fname, user.Lname, user.City, user.Age.ToString(), user.Gender, user.FbId);
             String prefix = "INSERT INTO Users " + "(FirstName, LastName,City,Age,genderID,FacebookID)";
             command = prefix + sb.ToString();
-             return insertCommand(command);
-          
+            return insertCommand(command);
+
         }
         catch (Exception)
         {
@@ -282,7 +282,7 @@ public class DataBaseManager
 
 
 
-    public int insertNewUserScanQr( string userid,string productCounter)
+    public int insertNewUserScanQr(string userid, string productCounter)
     {
         SqlConnection con;
 
@@ -302,9 +302,13 @@ public class DataBaseManager
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@productCounter", SqlDbType.Int).Value = productCounter;
         command.Parameters.Add("@userId", SqlDbType.Int).Value = userid;
-        int rows = command.ExecuteNonQuery();
+        SqlParameter outp = new SqlParameter("@activityId", SqlDbType.Int);
+        outp.Direction = ParameterDirection.Output;
+        command.Parameters.Add(outp);
+        command.ExecuteNonQuery();
+        int id = Convert.ToInt16(command.Parameters["@activityId"].Value);
         con.Close();
-        return rows;
+        return id;
     }
     /////////////////////////////////////// Execution of commands && procedures  ///////////////////
 
