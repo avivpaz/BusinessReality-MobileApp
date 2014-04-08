@@ -193,7 +193,7 @@ function GetAllProductOnSale(orgName) {
 function EnterOnSaleProducts(p) {
 
     $.each(p, function (index, Product) {
-        $("#productsOnSale").append($("<li  class='liList'  data-icon-position='left'  data-icon= 'arrow-l'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
+        $("productsOnSale").append($("<li  class='liList'  data-icon-position='left'  data-icon= 'arrow-l'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
     });
     $("#productsOnSale").listview("refresh");
 
@@ -251,20 +251,26 @@ function ShareCampaign() {
     params['description'] = '';
     params['caption'] = '';
     params['link'] = campaignInfo.LinkUrl
-    params['picture'] = campaignInfo.ImageUrl;  
+    params['picture'] = campaignInfo.ImageUrl;
 
-    FB.api('/me/feed', 'post', params, function (response) {
-        if (!response || response.error) {
-            // an error occured
-            alert(JSON.stringify(response.error));
-        } else {
-            // Done
-            $("#popupCampaign").popup({ overlayTheme: "a" });
-            $('#shareSuccess').text("אנו מודים לך על השיתוף! גש לקופה על מנת לממש את ההטבה. הטבה זאת תקפה למשך " + campaignInfo.Expiration + " שעות.");
-            $("#popupCampaign").popup("open");
-        }
-    });
+    if ($("#btnShareCampaign .ui-btn-text").text() != "זכאי לקבלת ההטבה") {
+
+        FB.api('/me/feed', 'post', params, function (response) {
+            if (!response || response.error) {
+                // an error occured
+                alert(JSON.stringify(response.error));
+            } else {
+                // Done
+                $("#popupCampaign").popup({ overlayTheme: "a" });
+                $('#shareSuccess').text("אנו מודים לך על השיתוף! גש לקופה על מנת לממש את ההטבה. הטבה זאת תקפה למשך " + campaignInfo.Expiration + " שעות.");
+                $("#popupCampaign").popup("open");
+            }
+        });
+        //after the post the button text is changing
+        $("#btnShareCampaign .ui-btn-text").text("זכאי לקבלת ההטבה");
+    }
 }
+
 
 function insertPropertyClick(pcid) {
     $.ajax({ // ajax call starts
