@@ -90,9 +90,8 @@ function getUserInfo() {
         str += "Id: " + response.id + ", ";
         str += "Email: " + response.email + ", ";
         str += "gender: " + response.gender + ", ";
-        str += "age: " + response.age_range + ", ";
         str += "birthday: " + response.birthday + ", ";
         str += "location: " + response.location.name + ", ";
-        alert(str);
+       // alert(str);
     });
 }
