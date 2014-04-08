@@ -224,7 +224,7 @@ function getActiveCampaignInfo(organizationID) {
 function EnterActiveCampaignInformation(camp) {
     $('#voucher').text(camp.Voucher);
     $('#CampDescription').text(camp.Description);
-
+ 
 }
 
 //once the user swipe to the left, the side panel opens
@@ -242,7 +242,6 @@ $(document).on("pageinit", "#showProductPage", function () {
 });
 
 
-
 //share campaign automaticlly on user fb wall 
 function ShareCampaign() {
     var params = {};
@@ -251,8 +250,9 @@ function ShareCampaign() {
     params['description'] = '';
     params['caption'] = '';
     params['link'] = campaignInfo.LinkUrl
-    params['picture'] = campaignInfo.ImageUrl;  
+    params['picture'] = campaignInfo.ImageUrl;
 
+    
     FB.api('/me/feed', 'post', params, function (response) {
         if (!response || response.error) {
             // an error occured
@@ -264,6 +264,20 @@ function ShareCampaign() {
             $("#popupCampaign").popup("open");
         }
     });
+
+        params['picture'] = campaignInfo.ImageUrl;
+    FB.api('/me/feed', 'post', params, function (response) {
+        if (!response || response.error) {
+            // an error occured
+            alert(JSON.stringify(response.error));
+        } else {
+            // Done
+            alert('Published to Facebook!');
+            $("#popupCampaign").popup({ overlayTheme: "a" });
+            $("#popupCampaign").popup("open");
+        }
+    });
+>>>>>>> bae34b352d5a4e3db8717677de2761d62bc9423b
 }
 
 function insertPropertyClick(pcid) {
