@@ -31,7 +31,7 @@
             // of whether they are logged into the app. If they aren't then they'll see the Login
             // dialog right after they log in to Facebook. 
             // The same caveats as above apply to the FB.login() call here.
-            FB.login();
+//            FB.login();
         }
     });
 };
