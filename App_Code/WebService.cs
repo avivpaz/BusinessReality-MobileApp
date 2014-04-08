@@ -113,7 +113,6 @@ public class WebService : System.Web.Services.WebService
         string jsonString = js.Serialize(camp);
         return jsonString;
     }
-
     
     /// <summary>
     /// update the user_sare_campaign table each time a user share a campaign
