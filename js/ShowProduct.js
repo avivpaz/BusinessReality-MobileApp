@@ -6,12 +6,10 @@ var activity;
 var orgName;
 var properties;
 $(document).ready(function () {
-    //    productCounter = getUrlVars()["productCounter"];
-    productCounter = 40;
+        productCounter = getUrlVars()["productCounter"];
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
-
     getOrganizationInfo(productCounter);
     getActiveCampaignInfo(1);
     $('#productsOnSale').on('click', 'li', function () {
