@@ -17,7 +17,7 @@
                 data-split-theme="d">
             </ul>
         </div>
-        <div data-role="header" data-theme="c" data-position="fixed">
+        <div data-role="header" data-theme="b" data-position="fixed">
             <a href="#sales" data-iconpos="right" data-icon="star" class="ui-btn-right">מבצעים</a>
             <p id="orgName">
             </p>
@@ -60,7 +60,7 @@
         </div>
     </div>
     <div data-role="page" id="comapnyProfile">
-        <div data-role="header" data-theme="c" data-position="fixed">
+        <div data-role="header" data-theme="b" data-position="fixed">
             <p id="P1">
                 פרופיל החברה
             </p>
@@ -102,14 +102,14 @@
         <div data-role="footer" data-theme="c" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#shareCampaign">קבל הטבה</a></li>
-                    <li><a href="">מבצעים</a></li>
+                    <li><a href="#shareCampaign" data-transition="flip">קבל הטבה</a></li>
+                    <li><a href="#showProductPage" data-transition="flip">חזרה למוצר</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div data-role="page" id="shareCampaign">
-        <div data-role="header" data-theme="c" data-position="fixed">
+        <div data-role="header" data-theme="b" data-position="fixed">
             <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">חזרה</a>
             <p id="orgName2">
             </p>
@@ -127,7 +127,7 @@
             <p id="CampDescription">
             </p>
             <div>
-                <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()">שתף לקבלת ההטבה</a>
+                <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()" data-theme="b">שתף לקבלת ההטבה</a>
                 <a data-role="button" id="btnCheckIfValid" onclick="CheckIfValid(1)">לבדיקת זכאות ההטבה</a>
             </div>
             <div data-role="popup" data-position-to="window" data-theme="c" data-transition="pop"
@@ -167,6 +167,7 @@
                     <input type="button" id="deactivateBtn" value="אישור" onclick="deactivate()" />
                 </div>
                 </form>
+            </div>
             </div>
             <div data-role="footer" data-theme="c" data-position="fixed">
             </div>
