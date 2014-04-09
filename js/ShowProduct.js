@@ -11,7 +11,7 @@ $(document).ready(function () {
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
-    $('#btnCheckIfValid').hide();
+
     getOrganizationInfo(productCounter);
     getActiveCampaignInfo(1);
     $('#productsOnSale').on('click', 'li', function () {
