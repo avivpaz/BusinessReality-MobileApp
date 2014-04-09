@@ -262,6 +262,7 @@ function ShareCampaign() {
                 // Done
                 $("#popupCampaign").popup({ overlayTheme: "a" });
                 $('#shareSuccess').text("אנו מודים לך על השיתוף! גש לקופה על מנת לממש את ההטבה. הטבה זאת תקפה למשך " + campaignInfo.Expiration + " שעות.");
+                $(".popupCampaign").popup({ positionTo: "window" });
                 $("#popupCampaign").popup("open");
             }
         });
