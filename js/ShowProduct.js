@@ -11,6 +11,7 @@ $(document).ready(function () {
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
+    $('#btnCheckIfValid').hide();
     getOrganizationInfo(productCounter);
     getActiveCampaignInfo(1);
     $('#productsOnSale').on('click', 'li', function () {
@@ -29,7 +30,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    CheckIfValid(2);
 
 });
 
@@ -266,7 +267,8 @@ function ShareCampaign() {
             }
         });
         //after the post the button text is changing
-        $("#btnShareCampaign .ui-btn-text").text("זכאי לקבלת ההטבה");
+        $("#btnShareCampaign").hide();
+        $("#btnCheckIfValid").show();
         UpdateUserShareCampaign(campaignInfo.Id, userId);
     }
 }
@@ -308,7 +310,7 @@ function insertPropertyClick(pcid) {
     }) // end of ajax call
 }
 
-function CheckIfValid() {
+function CheckIfValid(option) {
     $.ajax({ // ajax call starts
         url: 'WebService.asmx/getIfValid',   // JQuery loads serverside.php
         data: '{fbId:"' + userId + '",orgName:"' + orgName + '"}',
@@ -318,20 +320,35 @@ function CheckIfValid() {
         success: function (data) // Variable data contains the data we get from serverside
         {
             var p = $.parseJSON(data.d);
-            if (p == '0') {
-                $("#notValidVoucher").popup({ overlayTheme: "a" });
-                $('#notValidVoucherB').text("אנו מצטערים, אין לך הטבה בתוקף ");
-                $("#notValidVoucher").popup("open");
+            alert(p);
+            if (option == 1) {
+                if (p == '0') {
+                    $("#notValidVoucher").popup({ overlayTheme: "a" });
+                    $('#notValidVoucherB').text("אנו מצטערים, אין לך הטבה בתוקף ");
+                    $("#notValidVoucher").popup("open");
+                }
+                else {
+                    $("#validPopUp").popup({ overlayTheme: "a" });
+                    $("#validPopUp").popup("open");
+                }
             }
-            else {
-                $("#validPopUp").popup({ overlayTheme: "a" });
-                $("#validPopUp").popup("open");
+            else if (option == 2) {
+            alert(p);
+                if (p == '0') {
+               
+                }
+                else {
+                    $("#btnShareCampaign").hide();
+                    $('#btnCheckIfValid').show();
+                }
+                $('#btnCheckIfValid').button('refresh');
             }
         }, // end of success
         error: function (e) {
             alert(e.responseText);
         } // end of error
     }) // end of ajax call
+  
 }
 
 function deactivate() {
@@ -347,12 +364,14 @@ function deactivate() {
             success: function (data) // Variable data contains the data we get from serverside
             {
                 p = $.parseJSON(data.d);
-                alert(p);
+                $("#btnShareCampaign").show();
+                $("#btnCheckIfValid").hide();
+                $("#validPopUp").popup("close");
             }, // end of success
             error: function (e) {
                 alert(e.responseText);
             } // end of error
         }) // end of ajax call
     }
-    $("#validPopUp").popup("close");
+
 }

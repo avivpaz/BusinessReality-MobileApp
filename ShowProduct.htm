@@ -53,7 +53,7 @@
         <div data-role="footer" data-theme="c" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#shareCampaign" data-transition="flip">קבל הטבה</a></li>
+                    <li><a href="#shareCampaign" onclick="CheckIfValid(2)" data-transition="flip">קבל הטבה</a></li>
                     <li><a href="#comapnyProfile" data-transition="flip">אודות החברה</a></li>
                 </ul>
             </div>
@@ -128,7 +128,7 @@
             </p>
             <div>
                 <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()">שתף לקבלת ההטבה</a>
-                <a data-role="button" id="btnCheckIfValid" onclick="CheckIfValid()">לבדיקת זכאות ההטבה</a>
+                <a data-role="button" id="btnCheckIfValid" onclick="CheckIfValid(1)">לבדיקת זכאות ההטבה</a>
             </div>
             <div data-role="popup" data-position-to="window" data-theme="c" data-transition="pop"
                 id="popupCampaign" data-history="false">
@@ -164,7 +164,7 @@
                     <label id="passLbl" for="pw" class="ui-hidden-accessible">
                         סיסמא:</label>
                     <input type="password" name="pass" id="pw" value="" placeholder="סיסמא" data-theme="a" />
-                    <input type="button" value="אישור" onclick="deactivate()" />
+                    <input type="button" id="deactivateBtn" value="אישור" onclick="deactivate()" />
                 </div>
                 </form>
             </div>
