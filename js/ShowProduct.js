@@ -321,7 +321,6 @@ function CheckIfValid(option) {
         success: function (data) // Variable data contains the data we get from serverside
         {
             var p = $.parseJSON(data.d);
-            alert(p);
             if (option == 1) {
                 if (p == '0') {
                     $("#notValidVoucher").popup({ overlayTheme: "a" });
@@ -334,7 +333,6 @@ function CheckIfValid(option) {
                 }
             }
             else if (option == 2) {
-            alert(p);
                 if (p == '0') {
                
                 }
