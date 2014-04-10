@@ -110,11 +110,24 @@ public class Campaign
     
     }
 
+    /// <summary>
+    /// check if the user's voucher is valid after he shared a campaign
+    /// </summary>
+    /// <param name="fbId">the user's fb id</param>
+    /// <param name="orgName">the visited org name</param>
+    /// <returns>int - valid or not</returns>
     public int getIfValid(string fbId, string orgName)
     {
         DataBaseManager db = new DataBaseManager();
         return db.getIfValid(fbId, orgName);
     }
+
+    /// <summary>
+    /// Change the user voucher from valid to not valid 
+    /// </summary>
+    /// <param name="fbId">the user's fb id</param>
+    /// <param name="orgName">the visited org name</param>
+    /// <returns>number of rows changed</returns>
     public int changeValidCampiagn(string fbId, string orgName)
     {
         DataBaseManager db = new DataBaseManager();

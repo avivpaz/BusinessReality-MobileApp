@@ -33,6 +33,12 @@ public class Organization
     public string Description { get { return this.description; } set { this.description = value; } }
     public string FbWebsite { get { return this.fbWebsite; } set { this.fbWebsite = value; } }
 
+
+    /// <summary>
+    /// gets the organization profile info
+    /// </summary>
+    /// <param name="productId">productCounter of the product that bellongs to the organization</param>
+    /// <returns>gets an object of the organization</returns>
     public Organization getOrganizationInfo(int productCounter)
     {
         DataBaseManager db = new DataBaseManager();

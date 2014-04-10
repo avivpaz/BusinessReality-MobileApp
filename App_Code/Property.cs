@@ -48,6 +48,14 @@ public class Property
         DataBaseManager db = new DataBaseManager();
         return db.GetProductPropertiesInfo(productCounter);
     }
+
+
+    /// <summary>
+    /// pdate the db each time a property has been clicked
+    /// </summary>
+    /// <param name="activity">the current activity</param>
+    /// <param name="pcid">the property of a category id</param>
+    /// <returns>num of rows changed</returns>
     public int propertyClicked(string activity, string pcid)
     {
         DataBaseManager db = new DataBaseManager();

@@ -48,7 +48,11 @@ public class DataBaseManager
 
     }
 
-    //////////////////////////////////////////onLoad procedures////////////////////////////
+    ////////////////////////////////////// end of connection ///////////////////////////////
+
+
+    ////////////////////////////////////////// procedures /////////////////////////////////
+
 
     /// <summary>
     /// get the basic info (not incude properties) of all the existing products of an organization
@@ -90,11 +94,12 @@ public class DataBaseManager
         return product;
     }
 
-
     /// <summary>
-    /// change valid user share campaing to unvalid
+    /// Change the user voucher from valid to not valid 
     /// </summary>
-    /// <returns>change valid user share campaing to unvalid</returns>
+    /// <param name="fbId">the user's fb id</param>
+    /// <param name="orgName">the visited org name</param>
+    /// <returns>number of rows changed</returns>
     public int changeValidCampiagn(string fbId, string orgName)
     {
         SqlConnection con;
@@ -118,15 +123,15 @@ public class DataBaseManager
         int rows = command.ExecuteNonQuery();
         con.Close();
         return rows;
-    
+
     }
 
     /// <summary>
-    /// get the properties info of a specific product from the db
+    /// check if the user's voucher is valid after he shared a campaign
     /// </summary>
-    /// <param name="managerEmail">manager's email for identification</param>
-    /// <param name="productId">to select a specific product from the db</param>
-    /// <returns>a list of the product info</returns>
+    /// <param name="fbId">the user's fb id</param>
+    /// <param name="orgName">the visited org name</param>
+    /// <returns>int - valid or not</returns>
     public int getIfValid(string fbId, string orgName)
     {
         List<SqlParameter> paraList = new List<SqlParameter>();
@@ -203,9 +208,9 @@ public class DataBaseManager
 
 
     /// <summary>
-    ///Get All Products On Sale
+    ///Get All Products On Sale from the db
     /// </summary>
-    /// <param name="productId">Name of the organization</param>
+    /// <param name="orgName">Name of the organization</param>
     /// <returns>list of products </returns>
     public List<Product> GetAllProductOnSale(string orgName)
     {
@@ -242,10 +247,10 @@ public class DataBaseManager
         return products;
     }
     /// <summary>
-    /// gets the organization profile
+    /// gets the organization profile info
     /// </summary>
     /// <param name="productId">productCounter of the product that bellongs to the organization</param>
-    /// <returns>gets the organization profile</returns>
+    /// <returns>gets an object of the organization</returns>
     public Organization getOrganizationInfo(int productCounter)
     {
         List<SqlParameter> paraList = new List<SqlParameter>();
@@ -354,10 +359,11 @@ public class DataBaseManager
 
 
     /// <summary>
-    /// insert new property Clicked
+    /// pdate the db each time a property has been clicked
     /// </summary>
-    /// <param name="email">insert new property Clicked</param>
-    /// <returns></returns>
+    /// <param name="activity">the current activity</param>
+    /// <param name="pcid">the property of a category id</param>
+    /// <returns>num of rows changed</returns>
     public int propertyClicked(string activity, string pcid)
     {
 
@@ -384,7 +390,7 @@ public class DataBaseManager
     /// </summary>
     /// <param name="user">an object of a new user</param>
     /// <param name="email">manager email for identification</param>
-    /// <returns></returns>
+    /// <returns>num of rows changed</returns>
     public int insertNewUser(User user)
     {
 
@@ -406,7 +412,12 @@ public class DataBaseManager
     }
 
 
-
+    /// <summary>
+    /// update the db every time a user scanned a product
+    /// </summary>
+    /// <param name="userid">user's fb id</param>
+    /// <param name="productCounter">the product uniq identifier</param>
+    /// <returns>num of rows changed</returns>
     public int insertNewUserScanQr(string userid, string productCounter)
     {
         SqlConnection con;
@@ -435,7 +446,11 @@ public class DataBaseManager
         con.Close();
         return id;
     }
-    /////////////////////////////////////// Execution of commands && procedures  ///////////////////
+
+    ///////////////////////////////////////// end of procedures  //////////////////////////////////
+
+
+    /////////////////////////////////////// Execution methods of commands && procedures  ///////////////////
 
 
     /// <summary>
@@ -552,5 +567,5 @@ public class DataBaseManager
         return cmd;
     }
 
-    ////////////////////////////////////// End of Execution of commands && procedures  ///////////////////
+    ////////////////////////////////////// End of Execution methods of commands && procedures  ///////////////////
 }

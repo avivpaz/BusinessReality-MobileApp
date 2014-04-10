@@ -29,6 +29,13 @@ public class User
     public string Gender { get { return this.gender; } set { this.gender = value; } }
     public string FbId { get { return this.fbId; } set { this.fbId = value; } }
 
+
+    /// <summary>
+    /// insert a new app user into the db
+    /// </summary>
+    /// <param name="user">an object of a new user</param>
+    /// <param name="email">manager email for identification</param>
+    /// <returns>num of rows changed</returns>
     public int insertNewUser(User user)
     {
         DataBaseManager db = new DataBaseManager();
