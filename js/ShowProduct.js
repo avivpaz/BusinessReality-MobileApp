@@ -6,7 +6,7 @@ var activity;
 var orgName;
 var properties;
 $(document).ready(function () {
-        productCounter = getUrlVars()["productCounter"];
+    productCounter = getUrlVars()["productCounter"];
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
@@ -332,7 +332,7 @@ function CheckIfValid(option) {
             }
             else if (option == 2) {
                 if (p == '0') {
-               
+
                 }
                 else {
                     $("#btnShareCampaign").hide();
@@ -345,7 +345,7 @@ function CheckIfValid(option) {
             alert(e.responseText);
         } // end of error
     }) // end of ajax call
-  
+
 }
 
 function deactivate() {
@@ -370,5 +370,4 @@ function deactivate() {
             } // end of error
         }) // end of ajax call
     }
-
 }
