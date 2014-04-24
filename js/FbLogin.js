@@ -40,6 +40,7 @@
 };
 
 
+//extract the productCounter from the queryString in the url
 function getUrlVars() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -52,7 +53,7 @@ function getUrlVars() {
 }
 
 
-// Load the facebook SDK asynchronously. must have it. 
+// Load the facebook SDK asynchronously. must have it in every fb app page.
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -61,7 +62,7 @@ function getUrlVars() {
     fjs.parentNode.insertBefore(js, fjs);
 } (document, 'script', 'facebook-jssdk'));
 
-//get the current user basic info
+//enter the current user info into the db
 function EnterUserInfo() {
     var city
     FB.api('/me', function (response) {

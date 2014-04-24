@@ -5,6 +5,8 @@ var campaignInfo;
 var activity;
 var orgName;
 var properties;
+
+
 $(document).ready(function () {
     productCounter = getUrlVars()["productCounter"];
     userId = getUrlVars()["Id"];
@@ -32,7 +34,7 @@ $(document).ready(function () {
 
 });
 
-// Load the facebook SDK asynchronously. must have it. 
+// Load the facebook SDK asynchronously. must have it in every fb app page.
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -41,6 +43,7 @@ $(document).ready(function () {
     fjs.parentNode.insertBefore(js, fjs);
 } (document, 'script', 'facebook-jssdk'));
 
+//extract the productCounter and user id from the queryString in the url
 function getUrlVars() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -52,6 +55,7 @@ function getUrlVars() {
     return vars;
 }
 
+//create an activity of the user in the db acording to his fbId and the produced that he scanned
 function ActivateActivity() {
     $.ajax({ // ajax call starts
         url: 'WebService.asmx/insertNewUserScanQr',   // JQuery loads serverside.php
@@ -88,6 +92,7 @@ function getProductInfo(productCounter) {
     }) // end of ajax call
 }
 
+//enter all the basic info about the product to the page, and call another method to get this product properties
 function enterProductInfomation(p) {
     $('#productName').text(p.Name);
     $('#productDescription').text(p.Description);
@@ -121,6 +126,7 @@ function GetProductPropertiesInfo(productCounter) {
     }) // end of ajax call
 }
 
+//enter the properties from the db into the accordion
 function EnterProperties(p) {
     properties = p;
     var accordion = $('#propertiesAccordion');
@@ -155,6 +161,7 @@ function getOrganizationInfo(productCounter) {
     }) // end of ajax call
 }
 
+//all the info about the org from the db into the companyProfile page
 function EnterOrganizationInformation(org) {
     orgName = org.Name;
     $('#orgName').text(org.Name);
@@ -166,8 +173,6 @@ function EnterOrganizationInformation(org) {
     $('#fbLogo').attr("href", org.FbWebsite);
     GetAllProductOnSale(org.Name);
 }
-
-///////////////////////////////////////////
 
 
 //getting the selected product properties from the db
@@ -190,6 +195,7 @@ function GetAllProductOnSale(orgName) {
     }) // end of ajax call
 }
 
+//build the side menu with the products on sale
 function EnterOnSaleProducts(p) {
 
     $.each(p, function (index, Product) {
@@ -242,7 +248,7 @@ $(document).on("pageinit", "#showProductPage", function () {
 });
 
 
-//share campaign automaticlly on user fb wall 
+//share campaign on uthe ser fb wall and open pop up if success or not
 function ShareCampaign() {
     var params = {};
     params['message'] = campaignInfo.Description;
@@ -261,11 +267,10 @@ function ShareCampaign() {
                 // Done
                 $("#popupCampaign").popup({ overlayTheme: "a" });
                 $('#shareSuccess').text("אנו מודים לך על השיתוף! גש לקופה על מנת לממש את ההטבה. הטבה זאת תקפה למשך " + campaignInfo.Expiration + " שעות.");
-                $(".popupCampaign").popup({ positionTo: "window" });
                 $("#popupCampaign").popup("open");
             }
         });
-        //after the post the button text is changing
+        //after the post this button is hidden
         $("#btnShareCampaign").hide();
         $("#btnCheckIfValid").show();
         UpdateUserShareCampaign(campaignInfo.Id, userId);
@@ -291,7 +296,7 @@ function UpdateUserShareCampaign(campaignId, fbid) {
 
 }
 
-
+//update the db each time a property has been clicked
 function insertPropertyClick(pcid) {
     $.ajax({ // ajax call starts
         url: 'WebService.asmx/propertyClicked',   // JQuery loads serverside.php
@@ -309,6 +314,7 @@ function insertPropertyClick(pcid) {
     }) // end of ajax call
 }
 
+//for the manager - to check if the user is eligable to get the voucher
 function CheckIfValid(option) {
     $.ajax({ // ajax call starts
         url: 'WebService.asmx/getIfValid',   // JQuery loads serverside.php
@@ -319,21 +325,26 @@ function CheckIfValid(option) {
         success: function (data) // Variable data contains the data we get from serverside
         {
             var p = $.parseJSON(data.d);
+            //user pressed shareCampaign button right now
             if (option == 1) {
+                //if the voucher is not valid anymore
                 if (p == '0') {
                     $("#notValidVoucher").popup({ overlayTheme: "a" });
                     $('#notValidVoucherB').text("אנו מצטערים, אין לך הטבה בתוקף ");
                     $("#notValidVoucher").popup("open");
                 }
+                //the voucher is valid
                 else {
                     $("#validPopUp").popup({ overlayTheme: "a" });
                     $("#validPopUp").popup("open");
                 }
             }
+            //the shareCampaign butten was not pushed right now
             else if (option == 2) {
                 if (p == '0') {
 
                 }
+                //the user shared the campaign before and still eligable
                 else {
                     $("#btnShareCampaign").hide();
                     $('#btnCheckIfValid').show();
@@ -348,6 +359,7 @@ function CheckIfValid(option) {
 
 }
 
+//manager entered the password to deactivate the voucher after it been used by the user.
 function deactivate() {
     var password = $("#pw").val();
     if (password == '1234') {

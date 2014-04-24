@@ -55,6 +55,13 @@ public class Product
         return db.GetAllProductOnSale(orgName);
     }
 
+
+    /// <summary>
+    /// update the db every time a user scanned a product
+    /// </summary>
+    /// <param name="userid">user's fb id</param>
+    /// <param name="productCounter">the product uniq identifier</param>
+    /// <returns>num of rows changed</returns>
     public int insertNewUserScanQr(string userid, string productCounter)
     {
         DataBaseManager db = new DataBaseManager();
