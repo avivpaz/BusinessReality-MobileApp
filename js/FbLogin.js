@@ -81,7 +81,7 @@ function EnterUserInfo() {
             contentType: 'application/json; charset = utf-8',
             success: function (data) // Variable data contains the data we get from serverside
             {
-                alert('saas');
+
                 var change = $.parseJSON(data.d);
 
             }, // end of success

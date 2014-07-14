@@ -1,11 +1,17 @@
-﻿body 
+﻿body
+{
+    height:100%;
+    width:100%;
+    }
+
+
+#content
 {
     background: url('../BackOffice/img/App_bg.jpg') no-repeat !important ;
-    background-attachment:fixed;
-	background-size:100%;
-    text-align: center;
+	background-position:50% 50%;
+	text-align:center;
     
-    
+       
 }
 
 
@@ -14,22 +20,10 @@
     text-align:center;
 }
 
-.ui-page, .ui-dialog {
-    background: transparent repeat scroll;
-}
-
-.ui-content{
-    background: transparent;
-}
-
-.ui-page.ui-body-c {
-    background: url(..) !important;
-    background-position:center;
-}
-
 div#center-button.fb-login-button
 {
-   margin-top:75%;
-   padding-top:75%;
+
+   padding-top:60%;
+   padding-bottom:20px;
    
 }

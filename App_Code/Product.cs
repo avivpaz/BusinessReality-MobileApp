@@ -55,6 +55,16 @@ public class Product
         return db.GetAllProductOnSale(orgName);
     }
 
+    /// <summary>
+    /// get the user products scan history FROM THE DBf
+    /// </summary>
+    /// <param name="userId">for identification</param>
+    /// <returns>list of products objects</returns>
+    public List<Product> GetProductScanHistory(int userId)
+    {
+        DataBaseManager db = new DataBaseManager();
+        return db.GetProductScanHistory(userId);
+    }
 
     /// <summary>
     /// update the db every time a user scanned a product

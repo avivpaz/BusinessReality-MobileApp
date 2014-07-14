@@ -53,8 +53,10 @@
         <div data-role="footer" data-theme="c" data-position="fixed">
             <div data-role="navbar">
                 <ul>
+                     <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
                     <li><a href="#shareCampaign" onclick="CheckIfValid(2)" data-transition="flip">קבל הטבה</a></li>
                     <li><a href="#comapnyProfile" data-transition="flip">אודות החברה</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -172,6 +174,21 @@
         </div>
         <div data-role="footer" data-theme="c" data-position="fixed">
         </div>
+    </div>
+    <div data-role="page" id="scanHistory">
+            <div data-role="header" data-theme="b" data-position="fixed">
+            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">חזרה</a>
+            <p>
+            היסטוריית מוצרים
+            </p>
+            	<div data-role="content">
+		<div class="content-primary">	
+			<ul data-role="listview" id="scanHistoryList" data-filter="true" data-filter-placeholder="חפש מוצרים.." data-filter-theme="d" data-theme="d" data-divider-theme="d">
+<!--				<li data-role="list-divider">A</li>-->
+			</ul>
+			</div>
+        </div>
+    </div>
     </div>
 </body>
 </html>

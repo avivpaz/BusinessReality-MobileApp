@@ -246,6 +246,50 @@ public class DataBaseManager
         }
         return products;
     }
+
+
+    /// <summary>
+    /// get the user products scan history
+    /// </summary>
+    /// <param name="userId">for identification</param>
+    /// <returns>a list of product objects</returns>
+    public List<Product> GetProductScanHistory(int userId)
+    {
+        List<SqlParameter> paraList = new List<SqlParameter>();
+        List<Product> products = new List<Product>();
+
+        try
+        {
+            paraList.Add(new SqlParameter("@userId", userId));
+            SqlDataReader dr = ActivateStoredProc("proc_GetScanHistory", paraList);
+            while (dr.Read())
+            {// Read till the end of the data into a row
+                // read first field from the row into the list collection
+                Product product = new Product();
+                product.Name = dr["Name"].ToString();
+                product.ProductCounter = Convert.ToInt32(dr["productCounter"]);
+                product.Description = dr["ShortDescription"].ToString();
+                product.ImageUrl = dr["img"].ToString();
+                products.Add(product);
+            }
+        }
+
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return products;
+    }
+
+
+
     /// <summary>
     /// gets the organization profile info
     /// </summary>
