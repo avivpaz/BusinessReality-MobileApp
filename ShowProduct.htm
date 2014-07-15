@@ -50,12 +50,12 @@
                 </div>
             </div>
         </div>
-        <div data-role="footer" data-theme="c" data-position="fixed">
-            <div data-role="navbar">
-                <ul>
+        <div data-role="footer" data-theme="b" data-position="fixed">
+            <div data-role="navbar" >
+                <ul >
                      <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
                     <li><a href="#shareCampaign" onclick="CheckIfValid(2)" data-transition="flip">קבל הטבה</a></li>
-                    <li><a href="#comapnyProfile" data-transition="flip">אודות החברה</a></li>
+                    <li><a href="#comapnyProfile" data-transition="flip">אודות העסק</a></li>
                     
                 </ul>
             </div>
@@ -63,6 +63,7 @@
     </div>
     <div data-role="page" id="comapnyProfile">
         <div data-role="header" data-theme="b" data-position="fixed">
+        <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">חזרה</a>
             <p id="P1">
                 פרופיל החברה
             </p>
@@ -101,17 +102,17 @@
                 </table>
             </div>
         </div>
-        <div data-role="footer" data-theme="c" data-position="fixed">
+        <div data-role="footer" data-theme="b" data-position="fixed">
             <div data-role="navbar">
                 <ul>
+                    <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
                     <li><a href="#shareCampaign" data-transition="flip">קבל הטבה</a></li>
-                    <li><a href="#showProductPage" data-transition="flip">חזרה למוצר</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div data-role="page" id="shareCampaign">
-        <div data-role="header" data-theme="b" data-position="fixed">
+        <div data-role="header" data-position="fixed" data-theme="b">
             <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back">חזרה</a>
             <p id="orgName2">
             </p>
@@ -129,7 +130,7 @@
             <p id="CampDescription">
             </p>
             <div>
-                <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()" data-theme="b">
+                <a data-role="button" id="btnShareCampaign" onclick="ShareCampaign()" data-theme="f">
                     שתף לקבלת ההטבה</a> <a data-role="button" id="btnCheckIfValid" onclick="CheckIfValid(1)">
                         לבדיקת זכאות ההטבה</a>
             </div>
@@ -172,7 +173,13 @@
                 </form>
             </div>
         </div>
-        <div data-role="footer" data-theme="c" data-position="fixed">
+                <div data-role="footer" data-theme="b" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
+                    <li><a href="#comapnyProfile" data-transition="flip">אודות העסק</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div data-role="page" id="scanHistory">
@@ -184,11 +191,18 @@
             	<div data-role="content">
 		<div class="content-primary">	
 			<ul data-role="listview" id="scanHistoryList" data-filter="true" data-filter-placeholder="חפש מוצרים.." data-filter-theme="d" data-theme="d" data-divider-theme="d">
-<!--				<li data-role="list-divider">A</li>-->
 			</ul>
 			</div>
         </div>
     </div>
+                    <div data-role="footer" data-theme="b" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#shareCampaign" data-transition="flip">קבל הטבה</a></li>
+                    <li><a href="#comapnyProfile" data-transition="flip">אודות העסק</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>
