@@ -7,7 +7,7 @@ var orgName;
 var properties;
 
 
-$(document).ready(function () {
+$(document).ready(function () {   
     window.scrollTo(0, 1);
     productCounter = getUrlVars()["productCounter"];
     userId = getUrlVars()["Id"];
