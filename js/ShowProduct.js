@@ -8,6 +8,7 @@ var properties;
 
 
 $(document).ready(function () {
+    window.scrollTo(0, 1);
     productCounter = getUrlVars()["productCounter"];
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
@@ -18,7 +19,7 @@ $(document).ready(function () {
         var name = $(this).find('h3').text();
         $.each(productsOnSale, function (index, Product) {
             if (name == Product.Name) {
-                window.location.href = window.location.pathname + "?productCounter=" + Product.ProductCounter;
+                window.location.href = window.location.pathname + "?productCounter=" + Product.ProductCounter + '&Id=' + userId;
             }
         });
     });
@@ -102,11 +103,14 @@ function enterProductInfomation(p) {
     if (p.Discount != null && p.Discount != "") {
         $("#myPopup").popup({ overlayTheme: "a" });
         $('#discount').text(p.Discount);
-        $("#myPopup").popup("open");
+        setTimeout(OpenPopup, 2000);
     }
     GetProductPropertiesInfo(productCounter);
 }
 
+function OpenPopup() {
+    $("#myPopup").popup({ positionTo: "window" }).popup('open');
+}
 //getting the selected product properties from the db
 function GetProductPropertiesInfo(productCounter) {
     $.ajax({ // ajax call starts
@@ -199,7 +203,8 @@ function GetAllProductOnSale(orgName) {
 function EnterOnSaleProducts(p) {
 
     $.each(p, function (index, Product) {
-        $("#productsOnSale").append($("<li  class='liList'  data-icon-position='left'  data-icon= 'arrow-l'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
+            $("#productsOnSale").append($("<li  class='liList'  data-icon='false'  data-icon= 'arrow-l'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
+
     });
     $("#productsOnSale").listview("refresh");
 

@@ -43,8 +43,8 @@ public class WebService : System.Web.Services.WebService
         Product p = new Product();
         p = p.GetProductInfoBasic(productCounter);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(p);
-        return jsonString;
+        return js.Serialize(p);
+
     }
 
     /// <summary>
@@ -61,8 +61,7 @@ public class WebService : System.Web.Services.WebService
         Property p = new Property();
         properties = p.GetProductPropertiesInfo(productCounter);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(properties);
-        return jsonString;
+        return js.Serialize(properties);
     }
 
     /// <summary>
@@ -78,8 +77,7 @@ public class WebService : System.Web.Services.WebService
         Product p = new Product();
         products = p.GetAllProductOnSale(name);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(products);
-        return jsonString;
+        return js.Serialize(products);
     }
 
     /// <summary>
@@ -94,8 +92,7 @@ public class WebService : System.Web.Services.WebService
         Organization org = new Organization();
         org = org.getOrganizationInfo(productCounter);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(org);
-        return jsonString;
+        returns js.Serialize(org);
     }
 
     /// <summary>
@@ -110,10 +107,9 @@ public class WebService : System.Web.Services.WebService
         Campaign camp = new Campaign();
         camp = camp.getOrgActinveCampaignInfo(organizationID);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(camp);
-        return jsonString;
+        return js.Serialize(camp);
     }
-    
+
     /// <summary>
     /// update the user_sare_campaign table each time a user share a campaign
     /// </summary>
@@ -122,13 +118,12 @@ public class WebService : System.Web.Services.WebService
     /// <returns>json of number of rows changed</returns>
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-      public string UpdateUserShareCampaign(int campaignId, int fbID)
+    public string UpdateUserShareCampaign(int campaignId, int fbID)
     {
         Campaign camp = new Campaign();
         int change = camp.UpdateUserShareCampaign(campaignId, fbID);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(change.ToString());
-        return jsonString;
+        return js.Serialize(change.ToString());
     }
 
 
@@ -148,17 +143,13 @@ public class WebService : System.Web.Services.WebService
         u.Age = Convert.ToInt16(age);
         u.City = city;
         if (gender == "male")
-        {
             u.Gender = "1";
-        }
         else
-        {
             u.Gender = "2";
-        }
         int change = u.insertNewUser(u);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(change);
-        return jsonString;
+        return js.Serialize(change);
+
     }
 
     /// <summary>
@@ -172,23 +163,21 @@ public class WebService : System.Web.Services.WebService
         Product product = new Product();
         int id = product.insertNewUserScanQr(userid, productCounter);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(id);
-        return jsonString;
+        return js.Serialize(id);
     }
-    
+
     /// <summary>
     /// insert into User_scan_qrCode,Activity,Activity_activated
     /// </summary>
     /// <returns>number of change rows</returns>
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-      public string propertyClicked(string activity, string pcid)
+    public string propertyClicked(string activity, string pcid)
     {
         Property p = new Property();
         int change = p.propertyClicked(activity, pcid);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(change.ToString());
-        return jsonString;
+        return js.Serialize(change.ToString());
     }
 
     /// <summary>
@@ -202,10 +191,9 @@ public class WebService : System.Web.Services.WebService
         Campaign cm = new Campaign();
         int change = cm.getIfValid(fbId, orgName);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(change.ToString());
-        return jsonString;
+        return js.Serialize(change.ToString());
     }
-      /// <summary>
+    /// <summary>
     /// checks if the user has a valid voucher
     /// </summary>
     /// <returns>number of rows</returns>
@@ -216,9 +204,8 @@ public class WebService : System.Web.Services.WebService
         Campaign cm = new Campaign();
         int change = cm.changeValidCampiagn(fbId, orgName);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        string jsonString = js.Serialize(change.ToString());
-        return jsonString;
+        return js.Serialize(change.ToString());
     }
-       
+
 }//class
 

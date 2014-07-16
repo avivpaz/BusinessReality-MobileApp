@@ -64,7 +64,8 @@ function getUrlVars() {
 
 //enter the current user info into the db
 function EnterUserInfo() {
-    var city
+    var city;
+    var age
     FB.api('/me', function (response) {
         if (typeof response.location !== 'undefined') {
             city = response.location.name.split(",")[0];
@@ -72,7 +73,13 @@ function EnterUserInfo() {
         else {
             city = '';
         }
-        var age = getAge(response.birthday);
+
+        if (typeof response.birthday !== 'undefined') {
+            age = getAge(response.birthday);
+        }
+        else {
+            age = null;
+        }
         $.ajax({ // ajax call starts
             url: 'WebService.asmx/insertNewUser',   // JQuery loads serverside.php
             data: '{id:"' + response.id + '",fname:"' + response.first_name + '",lname:"' + response.last_name + '",city:"' + city + '",gender:"' + response.gender + '",age:"' + age + '"}',
@@ -81,7 +88,6 @@ function EnterUserInfo() {
             contentType: 'application/json; charset = utf-8',
             success: function (data) // Variable data contains the data we get from serverside
             {
-                alert('saas');
                 var change = $.parseJSON(data.d);
 
             }, // end of success
