@@ -4,6 +4,24 @@
     direction:rtl;
 }
 
+body .ui-li .ui-li-desc {
+ white-space: normal;
+ }
+ 
+ body .ui-footer .ui-title {
+ white-space: normal;
+ }
+
+.ui-btn-right
+{
+      
+}
+
+#btnShareCampaign
+{ background: #2d6b61;
+  color:White;
+}
+
 #productImage
 {
     width: 60%;
@@ -29,12 +47,19 @@ h2 .ui-btn-inner
      }
 .ui-page { -webkit-backface-visibility: hidden; }
 
-#productsOnSale img
+#productsOnSale img,
+#scanHistoryList img
 {
   width:100%;
   height:100%;
-    position:absolute;
-     right:0;
+  position:absolute;
+  right:0;
+}
+
+
+#scanHistoryList
+{
+       text-align:right;
 }
 #orgProfileTB
 {
@@ -57,8 +82,12 @@ h2 .ui-btn-inner
  
  }
 
+#scanHistoryList
+{
+ direction:rtl;   
+}
 
-    .ui-li-link-alt { right: auto !important; } // Fix for jQM 1.3
+    .ui-li-link-alt { right: auto !important; } 
 /* wrap push on wide viewports once open */
 @media (min-width: 35em){
 	.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
@@ -77,3 +106,4 @@ h2 .ui-btn-inner
 		display: none;
 	}
 }
+

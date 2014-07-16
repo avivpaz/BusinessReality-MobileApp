@@ -81,6 +81,23 @@ public class WebService : System.Web.Services.WebService
     }
 
     /// <summary>
+    /// get the user products scan history FROM THE DB
+    /// </summary>
+    /// <param name="userId">user id for identification</param>
+    /// <returns>a list of products objects</returns>
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string GetProductScanHistory(int userId)
+    {
+        List<Product> products = new List<Product>();
+        Product p = new Product();
+        products = p.GetProductScanHistory(userId);
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        string jsonString = js.Serialize(products);
+        return jsonString;
+    }
+
+    /// <summary>
     /// gets the organization info
     /// </summary>
     /// <param name="email">Product Counter</param>

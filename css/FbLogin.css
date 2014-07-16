@@ -1,35 +1,22 @@
-﻿body 
+﻿
+.ui-page
 {
-    background: url('../BackOffice/img/App_bg.jpg') no-repeat !important ;
-    background-attachment:fixed;
-	background-size:100%;
-    text-align: center;
-    
-    
+    background: url('../images/mobile_bg.png.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
 }
 
-
+body
+{
+    text-align:center;    
+}
 .fb-login-button
 {
-    text-align:center;
+    margin-top: 95%;
 }
 
-.ui-page, .ui-dialog {
-    background: transparent repeat scroll;
-}
 
-.ui-content{
-    background: transparent;
-}
 
-.ui-page.ui-body-c {
-    background: url(..) !important;
-    background-position:center;
-}
-
-div#center-button.fb-login-button
-{
-   margin-top:75%;
-   padding-top:75%;
-   
-}

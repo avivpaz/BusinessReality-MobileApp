@@ -1,5 +1,6 @@
-﻿var productCounter
+﻿var productCounter;
 var productsOnSale;
+var productsHistory;
 var userId
 var campaignInfo;
 var activity;
@@ -14,12 +15,22 @@ $(document).ready(function () {
     getProductInfo(productCounter);
     ActivateActivity();
     getOrganizationInfo(productCounter);
+    GetProductScanHistory(userId);
     getActiveCampaignInfo(1);
+
     $('#productsOnSale').on('click', 'li', function () {
         var name = $(this).find('h3').text();
         $.each(productsOnSale, function (index, Product) {
             if (name == Product.Name) {
                 window.location.href = window.location.pathname + "?productCounter=" + Product.ProductCounter + '&Id=' + userId;
+            }
+        });
+    });
+    $('#scanHistoryList').on('click', 'li', function () {
+        var name = $(this).find('h3').text();
+        $.each(productsHistory, function (index, Product) {
+            if (name == Product.Name) {
+                window.location.href = window.location.pathname + "?productCounter=" + Product.ProductCounter;
             }
         });
     });
@@ -199,14 +210,45 @@ function GetAllProductOnSale(orgName) {
     }) // end of ajax call
 }
 
+
+function GetProductScanHistory(userId) {
+    $.ajax({ // ajax call starts
+        url: 'WebService.asmx/GetProductScanHistory',   // JQuery loads serverside.php
+        data: '{userId:"' + userId + '"}',
+        type: 'POST',
+        dataType: 'json', // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8',
+        success: function (data) // Variable data contains the data we get from serverside
+        {
+            p = $.parseJSON(data.d);
+            productsHistory = p;
+            EnterProductsHistory(p);
+        }, // end of success**
+        error: function (e) {
+            alert(e.responseText);
+        } // end of error
+    }) // end of ajax call
+}
+
+
 //build the side menu with the products on sale
 function EnterOnSaleProducts(p) {
 
     $.each(p, function (index, Product) {
-            $("#productsOnSale").append($("<li  class='liList'  data-icon='false'  data-icon= 'arrow-l'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
+        $("#productsOnSale").append($("<li class='liList'  data-icon-position='left' data-iconpos='left' data-icon= 'arrow-l'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
 
     });
     $("#productsOnSale").listview("refresh");
+
+}
+
+///build the products history list
+function EnterProductsHistory(p) {
+    $.each(p, function (index, Product) {
+        $("#scanHistoryList").append($("<li class='liList' data-icon-position='left' data-iconpos='left' data-icon='false'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
+    });
+    $("#scanHistoryList").listview("refresh");
+
 
 }
 
