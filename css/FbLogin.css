@@ -1,28 +1,22 @@
-﻿body
+﻿
+.ui-page
 {
-    height:100%;
-    width:100%;
-    }
-
-
-#content
-{
-    background: url('../BackOffice/img/App_bg.jpg') no-repeat !important ;
-	background-position:50% 50%;
-	text-align:center;
-    
-       
+    background: url('../images/mobile_bg.png.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
 }
 
-
+body
+{
+    text-align:center;    
+}
 .fb-login-button
 {
-    text-align:center;
+    margin-top: 95%;
 }
 
-div#center-button.fb-login-button
-{
 
-   padding-top:60%;
-   
-}
+

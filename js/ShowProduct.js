@@ -1,4 +1,4 @@
-﻿var productCounter=40;
+﻿var productCounter;
 var productsOnSale;
 var productsHistory;
 var userId
@@ -9,7 +9,7 @@ var properties;
 
 
 $(document).ready(function () {
-    //productCounter = getUrlVars()["productCounter"];
+    productCounter = getUrlVars()["productCounter"];
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
