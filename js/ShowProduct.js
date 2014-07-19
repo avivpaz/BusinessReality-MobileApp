@@ -1,22 +1,22 @@
-﻿var productCounter;
+﻿var productCounter=70;
 var productsOnSale;
 var productsHistory;
 var userId
 var campaignInfo;
 var activity;
 var orgName;
+var orgId;
 var properties;
 
-
-$(document).ready(function () {   
+$(document).ready(function () {
     window.scrollTo(0, 1);
-    productCounter = getUrlVars()["productCounter"];
+    //productCounter = getUrlVars()["productCounter"];
     userId = getUrlVars()["Id"];
     getProductInfo(productCounter);
     ActivateActivity();
     getOrganizationInfo(productCounter);
     GetProductScanHistory(userId);
-    getActiveCampaignInfo(1);
+    getActiveCampaignInfo(orgId);
 
     $('#productsOnSale').on('click', 'li', function () {
         var name = $(this).find('h3').text();
@@ -178,6 +178,7 @@ function getOrganizationInfo(productCounter) {
 
 //all the info about the org from the db into the companyProfile page
 function EnterOrganizationInformation(org) {
+    orgId= org.Id;
     orgName = org.Name;
     $('#orgName').text(org.Name);
     $('#orgName2').text(org.Name);

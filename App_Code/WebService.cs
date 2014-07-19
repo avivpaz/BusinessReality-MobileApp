@@ -109,7 +109,7 @@ public class WebService : System.Web.Services.WebService
         Organization org = new Organization();
         org = org.getOrganizationInfo(productCounter);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        returns js.Serialize(org);
+        return js.Serialize(org);
     }
 
     /// <summary>

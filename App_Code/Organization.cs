@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class Organization
 {
+    private int id;
     private string name;
     private string address;
     private string industry;
@@ -24,6 +25,7 @@ public class Organization
         //
     }
 
+    public int Id { get { return this.id; } set { this.id = value; } }
     public string Name { get { return this.name; } set { this.name = value; } }
     public string Address { get { return this.address; } set { this.address = value; } }
     public string Industry { get { return this.industry; } set { this.industry = value; } }
