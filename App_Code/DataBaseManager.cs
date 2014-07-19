@@ -315,6 +315,7 @@ public class DataBaseManager
                 org.PhoneNumber = dr["PhoneNumber"].ToString();
                 org.WebSiteUrl = dr["Website"].ToString();
                 org.FbWebsite = dr["FbWebsite"].ToString();
+                
             }
         }
 
