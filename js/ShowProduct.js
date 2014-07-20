@@ -1,7 +1,7 @@
 ﻿    var productCounter;
     var productsOnSale;
     var productsHistory;
-    var userId
+    var userId;
     var campaignInfo;
     var activity;
     var orgName;
