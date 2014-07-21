@@ -307,6 +307,7 @@ public class DataBaseManager
             while (dr.Read())
             {// Read till the end of the data into a row
                 // read first field from the row into the list collection
+                org.Id = Convert.ToInt32(dr["OrganizationID"]);
                 org.Name = dr["Name"].ToString();
                 org.Description = dr["Description"].ToString();
                 org.Address = dr["Address"].ToString();
@@ -314,6 +315,7 @@ public class DataBaseManager
                 org.PhoneNumber = dr["PhoneNumber"].ToString();
                 org.WebSiteUrl = dr["Website"].ToString();
                 org.FbWebsite = dr["FbWebsite"].ToString();
+                
             }
         }
 
