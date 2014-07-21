@@ -104,12 +104,12 @@ public class WebService : System.Web.Services.WebService
     /// <returns>organization info</returns>
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string getOrganizationInfo(int productCounter)
+    public string getOrganizationInfo(int productCounter)   
     {
         Organization org = new Organization();
         org = org.getOrganizationInfo(productCounter);
         JavaScriptSerializer js = new JavaScriptSerializer();
-        returns js.Serialize(org);
+        return js.Serialize(org);
     }
 
     /// <summary>
