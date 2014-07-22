@@ -28,7 +28,7 @@
             var name = $(this).find('h3').text();
             $.each(productsHistory, function (index, Product) {
                 if (name == Product.Name) {
-                    window.location.href = window.location.pathname + "?productCounter=" + Product.ProductCounter;
+                    window.location.href = window.location.pathname + "?productCounter=" + Product.ProductCounter + '&Id=' + userId;
                 }
             });
         });
@@ -244,11 +244,15 @@
 
     ///build the products history list
     function EnterProductsHistory(p) {
-        $.each(p, function (index, Product) {
-            $("#scanHistoryList").append($("<li class='liList' data-icon-position='left' data-iconpos='left' data-icon='false'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
-        });
-        $("#scanHistoryList").listview("refresh");
-
+        if (p == null || p == '') {
+            $("#scanHistoryList").append($("<li><h3>לא נסרקו מוצרים</h3></li>"));
+        }
+        else {
+            $.each(p, function (index, Product) {
+                $("#scanHistoryList").append($("<li class='liList' data-icon-position='left' data-iconpos='left' data-icon='false'><a  href=''><img src='" + Product.ImageUrl + "' /> <div class='left'><h3>" + Product.Name + "</h3><p> " + Product.Description + "</p></div></a></li>"));
+            });
+            $("#scanHistoryList").listview("refresh");
+        }
 
     }
 
