@@ -19,7 +19,8 @@
             </ul>
         </div>
         <div data-role="header" data-theme="b" data-position="fixed">
-            <a href="#sales" data-iconpos="right" data-icon="star" class="ui-btn-right" data-mini="false" data-inline="true">מבצעים</a>
+            <a href="#sales" data-iconpos="right" data-icon="star" class="ui-btn-right" data-mini="false"
+                data-inline="true">מבצעים</a>
             <p id="orgName">
             </p>
         </div>
@@ -52,21 +53,21 @@
             </div>
         </div>
         <div data-role="footer" data-theme="b" data-position="fixed">
-            <div data-role="navbar" >
-                <ul >
-                     <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
                     <li><a href="#shareCampaign" onclick="CheckIfValid(2)" data-transition="flip">קבל הטבה</a></li>
                     <li><a href="#comapnyProfile" data-transition="flip">אודות העסק</a></li>
-                    
                 </ul>
             </div>
         </div>
     </div>
     <div data-role="page" id="comapnyProfile">
         <div data-role="header" data-theme="b" data-position="fixed">
-        <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back" data-mini="false" data-inline="true">חזרה</a>
+            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back"
+                data-mini="false" data-inline="true">חזרה</a>
             <p id="P1">
-               אודות העסק
+                אודות העסק
             </p>
         </div>
         <div data-role="content" data-theme="c" id="Div2">
@@ -75,8 +76,9 @@
             </p>
             <p id="orgDescription">
             </p>
-            <!--<img id="companyLogo"/>-->
-            <p>צור קשר</p>
+            <img id="companyLogo"/>
+            <p>
+                <b>צור קשר</b></p>
             <div>
                 <table id="orgProfileTB" class="table table-hover">
                     <tr>
@@ -88,20 +90,19 @@
                     </tr>
                     <tr>
                         <th>
-                            אתר החברה:
+                            אתר:
                         </th>
                         <td id="webSiteUrl">
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            
                         </th>
                         <td>
-                        <br />
+                            <br />
                             <a id="fbLogo" target="_blank">
                                 <img src="images/f.png" />
-                                </a>
+                            </a>
                         </td>
                     </tr>
                 </table>
@@ -112,13 +113,15 @@
                 <ul>
                     <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
                     <li><a href="#shareCampaign" data-transition="flip">קבל הטבה</a></li>
+                    <li><a href="#showProductPage" data-transition="flip">חזרה למוצר</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div data-role="page" id="shareCampaign">
         <div data-role="header" data-position="fixed" data-theme="b">
-            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back" data-mini="false" data-inline="true">חזרה</a>
+            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back"
+                data-mini="false" data-inline="true">חזרה</a>
             <p id="orgName2">
             </p>
         </div>
@@ -178,33 +181,37 @@
                 </form>
             </div>
         </div>
-                <div data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="footer" data-theme="b" data-position="fixed">
             <div data-role="navbar">
                 <ul>
                     <li><a href="#scanHistory" data-transition="flip">המוצרים שלי</a></li>
                     <li><a href="#comapnyProfile" data-transition="flip">אודות העסק</a></li>
+                    <li><a href="#showProductPage" data-transition="flip">חזרה למוצר</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div data-role="page" id="scanHistory">
-            <div data-role="header" data-theme="b" data-position="fixed">
-            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back" data-mini="false" data-inline="true">חזרה</a>
+        <div data-role="header" data-theme="b" data-position="fixed">
+            <a data-iconpos="right" data-icon="forward" class="ui-btn-right" data-rel="back"
+                data-mini="false" data-inline="true">חזרה</a>
             <p>
-            היסטוריית מוצרים
+                המוצרים שלי
             </p>
-            	<div data-role="content">
-		<div class="content-primary">	
-			<ul data-role="listview" id="scanHistoryList" data-filter="true" data-filter-placeholder="חפש מוצרים בהם התעניינת בעבר.." data-filter-theme="d" data-theme="d" data-divider-theme="d">
-			</ul>
-			</div>
+            <div data-role="content">
+                <div class="content-primary">
+                    <ul data-role="listview" id="scanHistoryList" data-filter="true" data-filter-placeholder="חפש מוצרים בהם התעניינת בעבר.."
+                        data-filter-theme="d" data-theme="d" data-divider-theme="d">
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-                    <div data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="footer" data-theme="b" data-position="fixed">
             <div data-role="navbar">
                 <ul>
                     <li><a href="#shareCampaign" data-transition="flip">קבל הטבה</a></li>
                     <li><a href="#comapnyProfile" data-transition="flip">אודות העסק</a></li>
+                    <li><a href="#showProductPage" data-transition="flip">חזרה למוצר</a></li>
                 </ul>
             </div>
         </div>

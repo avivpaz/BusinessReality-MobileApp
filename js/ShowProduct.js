@@ -184,7 +184,9 @@
         $('#orgPhone').text(org.PhoneNumber);
         $('#webSiteUrl').text(org.WebSiteUrl);
         $('#fbLogo').attr("href", org.FbWebsite);
-        //$('#companyLogo').attr("src", org.LogoSrc);
+        if (org.LogoSrc != '' || org.LogoSrc != null) {
+            $('#companyLogo').attr("src", org.LogoSrc);
+        }
         GetAllProductOnSale(org.Name);
         getActiveCampaignInfo(org.Id);
     }
