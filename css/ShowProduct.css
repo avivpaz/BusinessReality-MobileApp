@@ -83,6 +83,19 @@ h2 .ui-btn-inner
  direction:rtl;   
 }
 
+#companyLogo
+{
+    width:70%;  
+     
+}
+
+#fbLogo
+{
+     margin-right:10px;   
+}
+
+
+
     .ui-li-link-alt { right: auto !important; } 
 /* wrap push on wide viewports once open */
 @media (min-width: 35em){
