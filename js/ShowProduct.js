@@ -97,7 +97,7 @@
                 enterProductInfomation(p);
             }, // end of success
             error: function (e) {
-                alert(e.responseText);
+       
             } // end of error
         }) // end of ajax call
     }
@@ -134,7 +134,7 @@
                 EnterProperties(p);
             }, // end of success
             error: function (e) {
-                alert(e.responseText);
+
             } // end of error
         }) // end of ajax call
     }
@@ -169,7 +169,7 @@
                 EnterOrganizationInformation(o);
             }, // end of success
             error: function (e) {
-                alert(e.responseText);
+             
             } // end of error
         }) // end of ajax call
     }
@@ -207,7 +207,7 @@
                 EnterOnSaleProducts(p);
             }, // end of success**
             error: function (e) {
-                alert(e.responseText);
+             
             } // end of error
         }) // end of ajax call
     }
@@ -227,7 +227,7 @@
                 EnterProductsHistory(p);
             }, // end of success**
             error: function (e) {
-                alert(e.responseText);
+             
             } // end of error
         }) // end of ajax call
     }
@@ -274,7 +274,7 @@
                 EnterActiveCampaignInformation(o);
             }, // end of success
             error: function (e) {
-                alert(e.responseText);
+         
             } // end of error
         }) // end of ajax call
     }
@@ -343,7 +343,7 @@
                 p = $.parseJSON(data.d);
             }, // end of success
             error: function (e) {
-                alert(e.responseText);
+               
             } // end of error
         }) // end of ajax call
 
@@ -406,7 +406,7 @@
                 }
             }, // end of success
             error: function (e) {
-                alert(e.responseText);
+             
             } // end of error
         }) // end of ajax call
 
@@ -431,7 +431,7 @@
                     $("#validPopUp").popup("close");
                 }, // end of success
                 error: function (e) {
-                    alert(e.responseText);
+                 
                 } // end of error
             }) // end of ajax call
         }
